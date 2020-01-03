@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Example of popup message on mouse clicked position using jQuery</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script language="javascript" type="text/javascript">
+//  Developed by Roshan Bhattarai 
+//  Visit http://roshanbh.com.np for this script and more.
+//  This notice MUST stay intact for legal use
+$(function()  
+{ 
+  $(document).click(function(e)
+  {
+  var ItemClass= $(this).attr("class")
+  console.log(e.target.className);
+  
+	if (e.target.className!='modal' & e.target.className!='popup_msg'){
+		//show the popup message and hide with fading effect
+		$('#popuup_div').css({"transform":"scale(0)"});
+	}
+  }); 
+
+  
+  
+  
+  
+
+  $(".modal").click(function(e)
+  {
+    //getting height and width of the message box
+    var height = $('#popuup_div').height();
+    var width = $('#popuup_div').width();
+    //calculating offset for displaying popup message
+    leftVal=e.pageX-(width/2)+"px";
+    topVal=e.pageY-(height/2)+"px"; 
+    //show the popup message and hide with fading effect	
+ $('#popuup_div').css({left:leftVal,top:topVal,"transform":"scale(1)"}).show();
+  }); 
+
+  
+ }); 
+</script>
+
+<style type="text/css">
+.popup_msg{
+  background-color: #FFCBA3;
+  color: #000000;
+  padding: 9px;
+  border-radius: 7px;
+  border: 1px solid #FF9900;
+  position:absolute;
+  z-index:10;   
+  width:172px;
+  height:102px;
+  text-align:center;
+  font: 14px Verdana, Arial, Helvetica, sans-serif;
+  transition: all 200ms;
+  transform: scale(0);
+ display:none;
+}
+
+.modal {
+}
+
+h1 {
+  text-align: center;
+  font-family: Tahoma, Arial, sans-serif;
+  color: #06D85F;
+  margin: 80px 0;
+}
+
+</style>
+</head>
+
+<body >
+<div id="popuup_div" class="popup_msg">
+<br />
+Popup Message
+  <br /> 
+ Message goes here <br /> 
+ Message goes here
+</div> 
+
+<h1 class="modal">Displaying pop-up message in mouse clicked position using jQuery</h1>
+<p>&nbsp;</p>
+<h3 class="modal">Click on any position of the document with mouse</h3>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>Click on any position of the document with mouse</h3>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>Click on any position of the document with mouse</h3>
+<p>&nbsp;</p>
+
+</body>
+</html>

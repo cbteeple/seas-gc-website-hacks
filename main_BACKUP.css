@@ -1,0 +1,287 @@
+<style>
+
+#columns .block-boxes-os_boxes_html a, #columns .field-name-body a{
+    text-decoration: none;
+	font-weight: bold;
+}
+
+#menu-bar {
+	    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+	
+}
+
+.clear {
+    clear: both;
+}
+
+
+
+.aboutus{
+	width: 18%;
+	padding: 0.75%;
+	/*float: left;*/
+	display: inline-block;
+	vertical-align: top;	
+	line-height: 100%;
+	text-decoration: none;
+    color: #A51C30;
+	text-align: left;
+	font-size: 10pt;
+	
+}
+.aboutus .name{
+	text-align: center;
+	font-size: 14pt;
+	font-weight: bold;	
+	padding-top: 6px;
+}
+
+.aboutus .title{
+	text-align: center;
+	font-size: 12pt;
+	font-style: italic;	
+	padding-bottom: 4px;
+}
+
+.aboutus .initiatives{
+	font-size: 10pt;
+	font-weight: bold;
+	padding-top:2%;
+	padding-bottom: 2%;
+}
+
+
+.aboutus .image{
+	border-radius: 10px;
+	
+}
+
+.aboutus .blurb{
+	text-align:justify;	
+}
+
+.aboutusCategories{
+	padding-top:10px;
+	
+}
+
+
+.aboutusSections{
+
+}
+
+
+
+
+.smallbuttonsTOP{
+	width: 20%;
+	float: right;
+	display: block;
+	overflow: visible;
+	position:relative;
+}
+
+.buttonpicsmall{
+	text-decoration: none;
+    color: #A51C30;
+	vertical-align: top;
+	float: left;
+	display: inline-block;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+.buttonpicsmall:hover, .buttonpicsmall:active, .buttonpicsmall:focus {
+	color: #e01d00;
+	transform: scale(1.2);
+}
+
+
+.doublebutton{
+	width:49%;
+	padding-right: 5%;
+	padding-left: 5%;
+	display: block;
+}
+
+.singlebutton{
+	width:24%;
+	padding-right: 5%;
+	padding-left: 5%;
+	display: block;
+}
+
+.pics{
+	width: 100% !important;
+	max-width: 100% !important
+}
+
+
+.buttonpic{
+    text-decoration: none;
+    color: #A51C30;
+	vertical-align: top;
+	float: left;
+	display: inline-block;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+
+}
+
+.buttonpic:hover, .buttonpic:active, .buttonpic:focus {
+	color: #e01d00;
+	transform: scale(1.1);
+}
+
+
+
+.buttonpicbox{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+.buttonpicbox:hover, .buttonpicbox:active, .buttonpicbox:focus {
+	background-color: #F3F3F1;
+	transform: scale(1.05);
+}
+
+
+
+
+
+a{
+    text-decoration: none;
+    color: #A51C30;
+    -webkit-transition: color 0.3s;
+    transition: color 0.3s;
+}
+
+a:visited {
+    text-decoration: none;
+	color: #A51C30;
+}
+
+a:hover {
+    color: #e01d00;
+}
+
+a:active {
+    color: #e01d00;
+}
+
+
+
+.nicebuttons{
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 100%;
+}
+
+.sitehead{
+	font-size: 50px;
+	line-height: 120%;
+	color: #000000;
+	padding-bottom: 10px;
+}
+
+.sitedescription{
+	font-size: 18px;
+	line-height: 100%;
+	color: #000000;
+}
+
+@media screen and (min-width: 0px) {
+    .nicebuttons {
+        font-size: 3.6vw;
+    }
+		
+	.sitehead {
+		font-size: 10vw;
+	}
+	.sitedescription{
+		font-size: 3.6vw;
+	}
+	
+	.smallbuttonsTOP{
+		width: 40% !important;
+		float: right !important;	
+	}
+	.aboutus{
+	width:98%;
+	}
+}
+
+@media screen and (min-width: 479px) {
+    .nicebuttons {
+        font-size: 2.7vw;
+    }
+
+	.sitehead {
+		font-size: 7vw;
+	}
+	.sitedescription{
+		font-size: 2.7vw;
+	}
+	
+	.smallbuttonsTOP{
+		width: 30% !important;
+		float: right !important;	
+	}
+	
+	.aboutus{
+	width:48%;
+	}
+}
+
+
+@media screen and (min-width: 767px) {
+    .nicebuttons {
+        font-size: 1.9vw;
+    }
+	
+	.sitehead {
+		font-size: 6vw;
+	}
+	.sitedescription{
+		font-size: 1.9vw;
+	}
+	.smallbuttonsTOP{
+		width: 23% !important;
+		float: right !important;
+	}
+		.aboutus{
+	width:31.3%;
+	}
+	
+	
+}
+
+
+@media screen and (min-width: 1008px) {
+    .nicebuttons {
+        font-size: 18px;
+    }
+	
+	.sitehead {
+		font-size: 50px;
+	}
+	.sitedescription{
+		font-size: 18px;
+	}
+	
+	.smallbuttonsTOP{
+		width: 20% !important;
+		float: right !important;
+	}
+	.aboutus{
+	width:22.75%;
+	}
+	
+}
+
+</style>

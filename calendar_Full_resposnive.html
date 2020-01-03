@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+
+<head>
+    <title></title>
+         
+
+
+
+
+
+
+<style type="text/css">
+        .li {
+			list-style:none;
+			padding:3px;
+			border-radius: 4px;
+			line-height: 16px;
+			font-size: 14px;
+			transition: all 120ms ease-in-out;
+		}
+		
+		.li:hover {
+			opacity: 0.7;
+			
+			
+			}
+		
+
+
+		.datagrid{
+			padding: 0px;
+			}
+			
+		.datagrid td{
+			vertical-align: middle;
+			padding:0px;
+		}
+		
+		.datagrid td:first-child{
+			padding: 0px;
+		}
+		
+		.datagrid td:last-child{
+			padding: 0px;
+		}
+		
+		
+		
+		.calgrid{
+			padding: 0px;
+		}
+		
+		.calgrid tr{
+			border: 0px solid #000;
+			padding:0px;
+		}
+		
+		.calgrid th{
+			padding: 7px;
+			text-size: 24px;
+			text-align: left;
+			color: #FFF;
+			background: #A51C30;
+		}
+			
+		.calgrid td{
+			border-bottom: 0px solid #000;
+			vertical-align: top;
+			width: calc(100% / 7);
+			padding:3px;
+			padding-bottom:25px;
+		}
+			
+		table{
+			padding:0px;
+			vertical-align: middle;
+		}
+		
+		
+		
+		
+		.circle {
+		  width: 50px;
+		  height: 50px;
+		  border-radius: 50%;
+		  font-size: 13px;
+		  color: #000;
+		  text-align: center;
+		  background: #ededed;
+		  line-height: 20px;
+		  font-weight: bold;
+		}
+		
+		.circle-red {
+		  width: 50px;
+		  height: 50px;
+		  border-radius: 50%;
+		  font-size: 13px;
+		  color: #FFF;
+		  text-align: center;
+		  background: #A51C30;
+		  line-height: 20px;
+		  font-weight: bold;		  
+		}
+		
+		
+		.circle-odd {
+		  width: 50px;
+		  height: 50px;
+		  border-radius: 50%;
+		  font-size: 13px;
+		  color: #a5a5a5;
+		  text-align: center;
+		  background:#dbdbdb;
+		  line-height: 20px;
+		  font-weight: bold;
+		  
+		}
+		
+		.circle-blank {
+		  width: 70px;
+		  height: 70px;
+		  border-radius: 50%;
+		  font-size: 20px;
+		  text-align: center;
+		  line-height: 28px;
+		  font-weight: bold;
+		  
+		}
+		
+
+		
+		.topjust{
+		vertical-align: top;
+		align: left;
+		padding: 7px;
+		}
+		
+		
+		.popupTable{
+		vertical-align: top;
+		align: left;
+		padding: 7px;
+		}
+		
+
+		.todaybox{
+			background: #fff2f3;
+			border-radius: 5px;
+		        border-top-left-radius: 28px;
+                        border-color: #ffc4c8;
+
+
+		}
+		
+		.oddbox{
+			background: #ededed;
+                        border-left-color: #ededed;
+                        border-bottom-color: #ededed;
+
+		}
+		
+		
+	
+		
+		//Create a Div-based table
+		
+		.largeContainer{
+			//float: left;
+			width: 100%;
+			height: 900px;
+			//position: relative;	
+		}
+		
+		.mobileContainer{
+			//float: left;
+			width: 100%;
+			height: 900px;
+			//position: relative;
+			display: none;			
+		}
+		
+		
+		
+		
+		.div-table {
+			       
+			width: 100%;                         
+			border-spacing: 5px; /* cellspacing:poor IE support for  this */
+		}
+		
+		.div-table-header {
+			display: table-cell;
+			width: 14.1%;
+			width: calc(100% / 7);
+			clear: both;
+						
+			padding: 7px;
+			text-size: 24px;
+			text-align: left;
+			color: #FFF;
+			background: #A51C30;
+			
+		}
+		
+		.div-table-headerRow {
+			display: table;
+			width: 100%;
+			clear: both;
+			border-spacing: 0px;
+			
+		}
+		
+		
+		.div-table-row {
+			display:flex;
+			width: 100%;
+			min-height: 100px;
+			clear: both;
+			
+		}
+		
+
+		
+		.div-table-col {
+			display: table-cell;
+			float: left; /* fix for  buggy browsers */       
+			width: 14.1%;
+			width: calc(100% / 7);
+                        border-left-style: solid;
+                        border-bottom-style: solid;
+                        border-bottom-width: 1px;
+                        border-left-width: 1px;
+                        border-left-color: #e5e5e5;
+                        border-bottom-color: #e5e5e5;
+                        border-bottom-left-radius: 5px;
+		        border-top-left-radius: 28px;
+					
+		}
+		
+
+		
+        .eventtitle { font-weight:bold; font-size: 14px;}
+		.eventtype { font-size: 10px;}
+		.eventdate {font-size: 11px;}
+		.mainlink{text-decoration: none;}
+		.callink{padding-top: 20px; font-size: 12px;}
+		a{text-decoration: none}
+		.description{padding-top: 10px;}
+
+		.eventdateLARGE {font-size: 16px;  font-weight: bold}
+		.eventtitleLARGE { font-weight:bold; font-size: 25px;}
+		.eventtypeLARGE { font-size: 14px; font-weight: bold}
+		.descriptionLARGE{padding-top: 10px; font-size:18px;}
+		.eventdateLARGE {font-size: 16px;  font-weight: bold}
+		.locationLARGE {font-size: 16px; font-weight: bold}
+
+		.descriptionLARGE a{
+			text-decoration: none;
+			color: #FFFFFF;
+			}
+			
+		.descriptionLARGE a:hover{
+			color: #ffe0e0;
+			}
+		
+		
+		
+.whiteText{
+	color: #FFFFFF;
+}
+
+.whiteBG{
+	background: #FFFFFF;
+}
+
+.blackText{
+	color: #000000;
+}
+
+
+
+
+.Link{
+    text-decoration: none;
+	font-weight: bold;
+    color: #E0E0E0 !important;
+	font-size: 12px;
+    -webkit-transition: color 0.3s;
+    transition: color 0.3s;
+}
+
+
+.Link:hover {
+    color: #FFFFFF !important;
+	text-decoration: none;
+}
+
+
+
+
+
+
+
+
+		
+.red{
+	color: #c60000;
+	color: #E53935;
+}
+
+.redbg{
+	margin:5px;
+	background: #ffe8e8;
+	background: #c60000;
+	background: #E53935;
+	//border:1px dotted #c60000;
+}
+
+.redbgO{
+	color: #E53935;
+	background: #c60000;
+	background: #FFFFFF;
+}
+
+
+
+.blue{
+	color: #0089b7;
+}
+
+.bluebg{
+	margin:5px;
+	background: #eafaff;
+	background: #0089b7;
+	background: #1565C0;
+	//border:1px dotted #0089b7;
+
+}
+
+.bluebgO{
+	background: #0089b7;
+	background: #FFFFFF;
+	color: #1565C0;
+}
+
+
+
+.orange{
+	color: #db5b00;
+}
+
+.orangebg{
+	margin:5px;
+	background: #ffede0;
+	background: #db5b00;
+	background: #ff8300;
+	//border:1px dotted #db5b00;
+
+}
+
+.orangebgO{
+	background: #db5b00;
+	background: #FFFFFF;
+	color: #ff8300;
+}
+
+
+
+
+.yellow{
+	color: #bf6900;
+}
+
+.yellowbg{
+	margin:5px;
+	background: #fff8e8;
+	background: #c68b00;
+	//border:1px dotted #bf6900;
+
+}
+
+.yellowbgO{
+	background: #bf6900;
+	background: #FFFFFF;
+	color: #c68b00;
+}
+
+
+
+
+.green{
+	color: #009600;
+}
+
+.greenbg{
+	margin:5px;
+	background: #eaffef;
+	background: #009600;
+	//border:1px dotted #009600;
+}
+
+.greenbgO{
+	background: #009600;
+	background: #FFFFFF;
+	color: #009600;
+}
+
+
+
+
+
+
+
+.grey{
+	color: #5c5f60;
+}
+
+.greybg{
+
+	margin:5px;
+	background: #f9f9f9;
+	background: #5c5f60;
+	//border:1px dotted #5c5f60;
+}
+
+.greybgO{
+	background: #5c5f60;
+	background: #FFFFFF;
+	color: #5c5f60;
+}
+
+
+
+
+
+.centeringGrid{
+position: static;
+
+}
+
+
+.overlay {
+  display: flex;
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+ // left: 0%;
+ // right: 0%;
+  float: left;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  transition: opacity 150ms;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 999;
+  transition: all 150ms ease-in-out;
+
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.overlay:target .popup {
+	opacity: 1;
+	transform: scale(1);
+	  visibility: visible;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  border-radius: 10px;
+  left: 20%;
+  right: 20%;
+  bottom:0px;
+  
+  position: fixed;
+  transition: all 150ms ease-in-out;
+  opacity: 1;
+  transform: scale(.8);
+  z-index: 1000;
+}
+
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 45px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #FFFFFF;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+
+
+@media screen and (max-width: 700px){
+  .box{
+    width: 70%;
+  }
+  .popup{
+    width: 70%;
+  }
+}
+	
+
+
+@media screen and (max-width: 600px) {
+	.largeContainer{
+		display: none;
+	}
+	
+	.mobileContainer{
+		display: block;
+	}
+}	
+		
+
+
+
+		.contentBoxMobile{
+			display: flex;
+			display: -webkit-flex;
+			//justify-content: center;
+			align-items: center; 
+			-webkit-transition: all 0.2s;
+			transition: all 0.2s;
+		}
+
+		
+		
+
+		
+		
+		
+        .contentStuffMobile {
+			list-style:none;
+			padding:3px;
+			border-radius: 6px;
+			line-height: 16px;
+			font-size: 14px;
+			display: inline-block;
+			width: 100%;
+			
+		}	
+		
+		.contentBoxMobile .contentStuffMobile{
+			-webkit-transition: all 0.15s;
+			transition: all 0.15s;
+		}
+		
+		.contentBoxMobile:hover .contentStuffMobile {
+			opacity: 0.7;
+		}
+		
+
+
+
+
+		
+		.circleMobile {
+		  width: 70px;
+		  min-width:70px;
+		  height: 70px;
+		  min-height:70px;
+		  border-radius: 50%;
+		  font-size: 16px;
+		  color: #000;
+		  text-align: center;
+		  background: #ededed;
+		  line-height: 26px;
+		  font-weight: bold;
+		  display: inline-block;
+		}		
+
+		.contentBoxMobile .circleMobile{
+			-webkit-transition: all 0.15s;
+			transition: all 0.15s;
+		}
+		.contentBoxMobile:hover .circleMobile {
+			transform: scale(1.1);
+		}	
+		
+		
+		
+		
+		
+
+		
+        .eventtitleMobile {
+			font-weight:bold;
+			font-size: 17px;
+			}
+			
+		.eventtypeMobile {
+			font-size: 11px;
+			}
+			
+			
+		.eventdateMobile {font-size: 14px;}
+		.eventlocationMobile {font-size: 14px;}
+		
+		.mainlinkMobile{
+			text-decoration: none;
+			color: #FFFFFF;
+		}
+		
+		
+		.descriptionMobile a{
+			text-decoration: none;
+			color: #FFFFFF;
+			}
+			
+		.descriptionMobile a:hover{
+			color: #ffe0e0;
+			}
+			
+			
+			
+		a{
+			text-decoration: none
+			}
+			
+		.descriptionMobile{
+			padding-top: 10px;
+			color: #FFFFFF;
+			}
+	
+
+
+	@media screen and (min-width: 0px) {
+		.descriptionMobile{
+		display: inline;
+		}
+	}
+	
+	
+	@media screen and (min-width: 479px) {
+		.descriptionMobile{
+		display: inline;
+		}
+	}
+
+
+	@media screen and (min-width: 767px) {
+		.descriptionMobile{
+			display: none;
+		}
+	}
+	
+	@media screen and (min-width: 1008px) {
+		.descriptionMobile{
+		display: inline;
+		}
+	}
+
+
+
+
+	
+
+		
+.redMobile{
+	color: #FFFFFF; !important;
+}
+
+.redbgMobile{
+	margin:5px;
+	background: #E53935;
+}
+
+
+
+
+.blueMobile{
+	color: #FFFFFF !important;
+}
+
+.bluebgMobile{
+	margin:5px;
+	background: #1565C0;
+
+}
+
+
+
+.orangeMobile{
+	color: #FFFFFF !important;
+}
+
+.orangebgMobile{
+	margin:5px;
+	background: #ff8300;
+
+}
+
+
+
+
+
+.yellowMobile{
+	color: #FFFFFF !important;
+}
+
+.yellowbgMobile{
+	margin:5px;
+	background: #c68b00;
+
+}
+
+
+
+
+
+.greenMobile{
+	color: #FFFFFF !important;
+}
+
+.greenbgMobile{
+	margin:5px;
+	background: #009600;
+}
+
+
+
+
+
+
+
+
+.greyMobile{
+	color: #FFFFFF !important;
+}
+
+.greybgMobile{
+	margin:5px;
+	background: #5c5f60;
+}		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+    </style>
+
+
+
+	
+	
+	
+</head>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"><script>
+// media query event handler
+if (matchMedia) {
+  const mq = window.matchMedia("(min-width: 479px)");
+  mq.addListener(WidthChange);
+
+  WidthChange(mq);
+}
+
+// media query change
+function WidthChange(mq) {
+  if (mq.matches) {
+    // window width is at least 500px
+	
+	
+  } else {
+    // window width is less than 500px
+  }
+
+}
+
+</script>
+
+<script type="text/javascript">
+
+(function($) {
+
+  $.fn.gCalReader = function(options) {
+    var $div = $(this);
+
+    var defaults = $.extend({
+        calendarId: 'en.usa#holiday@group.v.calendar.google.com',
+        apiKey: 'Public_API_Key',
+        dateFormat: 'LongDate',
+		timeFormat: 'ShortTime',
+        errorMsg: 'No events in calendar',
+        maxEvents: 100,
+        futureEventsOnly: false,
+        sortDescending: true
+      },
+      options);
+
+    var s = '';
+    var feedUrl = 'https://www.googleapis.com/calendar/v3/calendars/' +
+      encodeURIComponent(defaults.calendarId.trim()) +'/events?key=' + defaults.apiKey +
+      '&orderBy=startTime&singleEvents=true';
+	  
+	  var d2 = new Date();
+	   var d= getSunday(d2);
+
+	  
+		d.setTime(d.getTime()-AddDaysInMS(7));
+
+		//var ed = new Date();
+		//ed.setDate(ed.getDate()+21);
+
+		//d= new Date(getSunday(d));
+		var ed = new Date();
+		ed.setTime(d.getTime()+AddDaysInMS(27));
+
+
+	  
+        feedUrl+='&timeMin='+ (d).toISOString();
+		feedUrl+='&timeMax='+ (ed).toISOString();
+
+	  
+
+    $.ajax({
+      url: feedUrl,
+      dataType: 'json',
+      success: function(data) {
+        if(defaults.sortDescending){
+          data.items = data.items.reverse();
+        }
+        data.items = data.items.slice(0, defaults.maxEvents);
+		
+
+
+		//Build Calendar grid
+		var tableout = '';
+		tableout+='<div class="div-table">';
+				
+		//Build the Header
+		var testdate = new Date();
+				testdate= getSunday(testdate);
+
+				tableout+='<div class="div-table-headerRow">';
+		for(var i=0; i<7; i++){
+			tableout+='<div class="div-table-header">'
+			tableout+=formatDate(testdate.toISOString(), 'WeekDay');
+			
+			tableout+='</div>'
+			testdate.setTime(testdate.getTime()+AddDaysInMS(1));
+		}
+		tableout+='</div>';
+		
+		var divsVec='';
+		var BlockDay=new Date(d);
+		var DateDay=new Date(d);
+		DateDay.setDate(DateDay.getDate());
+		var today = new Date();
+		for (var k=0; k<4; k++ ){
+			tableout+='<div class="div-table-row">';
+			for (var j=0; j<7;j++ ){
+                var todayclass='class="div-table-col"';
+                var circlass='circle';
+					if(DateDay.getDate()==today.getDate()){
+					circlass='circle-red';
+					todayclass='class="div-table-col todaybox"';
+					
+					}
+					else if(DateDay.getMonth()!=today.getMonth()){
+						todayclass='class="div-table-col oddbox"';
+						circlass='circle-odd';
+					}
+					
+				tableout+='<div '+todayclass+'>';
+
+			tableout+='<div class="'+circlass+'">';
+			tableout+=formatDate(DateDay.toISOString(), 'MonthOnly')+' <br> <div style="font-size: 30px">'+formatDate(DateDay.toISOString(), 'DayOnly')+ '</div></div>'
+					
+		
+		//for each day in the calendar, check if the 
+        $.each(data.items, function(e, item) {	
+		  var timeend = item.end.dateTime;
+		  var startdate=item.start.dateTime;		
+		  var actualdate = new Date(startdate);
+		  var weekday = actualdate.getDay();
+		
+		  //If the date and day of the week matches, inject the event into the table
+						
+			if (actualdate.getDate()==BlockDay.getDate() & actualdate.getMonth()==BlockDay.getMonth()){
+				
+			
+          var eventdate = item.start.dateTime || item.start.date ||'';
+          var summary = item.summary || '';
+		  
+
+		  
+
+		  
+		  
+			  //Set Color Based on what type of event this is
+			  var color = 'grey';
+			  var bgcolor='greybg';
+			  var colorO='greybgO';
+			  var type = '';
+			  var typeLARGE='';
+			  if ( summary.indexOf('[M]') !== -1 ){
+					color='red';
+					bgcolor='redbg';
+					colorO='redbgO';
+					//type= '<div class="eventtype">GC MEETING</div>'
+					type= '<div class = "eventtype whiteText ">GC MEETING</div>';
+					typeLARGE= '<div class = "eventtypeLARGE whiteText">GC MEETING</div>';
+					summary= summary.split(']').pop();					
+			  }
+			  else if ( summary.indexOf('[S]') !== -1 ){
+					color='orange';
+					bgcolor='orangebg';
+					colorO='orangebgO';
+					//type= '<div class="eventtype">MEETING</div>'
+					type= '<div class = "eventtype whiteText ">SOCIAL EVENT</div>';
+					typeLARGE= '<div class = "eventtypeLARGE whiteText">SOCIAL EVENT</div>';
+					summary= summary.split(']').pop();					
+			  }
+			  else if ( summary.indexOf('[AT]') !== -1 ){
+					color='blue';
+					bgcolor='bluebg';
+					colorO='bluebgO';
+					type= '<div class = "eventtype whiteText ">ACADEMIC TALK</div>';
+					typeLARGE= '<div class = "eventtypeLARGE whiteText">ACADEMIC TALK</div>'		
+					summary= summary.split(']').pop();
+			  }
+			  else if ( summary.indexOf('[O]') !== -1 ){
+					color='yellow';
+					bgcolor='yellowbg';
+					colorO='yellowbgO';
+					type= '<div class = "eventtype whiteText ">OUTREACH EVENT</div>';
+					typeLARGE= '<div class = "eventtypeLARGE whiteText">OUTREACH EVENT</div>';
+					summary= summary.split(']').pop();
+			  }
+			  else if ( summary.indexOf('[PT]') !== -1 ){
+					color='green';
+					bgcolor='greenbg';
+					colorO='greenbgO';
+					type= '<div class = "eventtype whiteText ">PROFESSIONAL DEVELOPMENT</div>'	
+					typeLARGE= '<div class = "eventtypeLARGE whiteText">PROFESSIONAL DEVELOPMENT</div>';
+					summary= summary.split(']').pop();
+			  }
+		  
+		  
+					var description = item.description;
+					var location = item.location;
+					
+					s =type+'<div class="eventtitle whiteText">' + summary + '</div>';
+					s +='<div class="eventdate whiteText">'+ formatDate(eventdate, defaults.timeFormat.trim())+' - '+formatDate(timeend, defaults.timeFormat.trim()) +'</div>';
+					
+									
+		
+		outstr='';
+		outstr+='<div class="li '+bgcolor+'">';
+		outstr+='<a class ="mainlink" href="#'+item.id+'">' + s + '</a></div>';
+		//outstr+='"><a style ="mainlink" target="_blank" href="'+item.htmlLink+'">' + s + '</a></li>';
+
+		//tableout+='<div class="div-table-row">';
+	
+	
+		//tableout+='</div>';
+		tableout+=outstr;
+		
+		
+		//Create HTML for the Popups
+		
+			var divs = '';
+	
+			
+			divs+='<div id="'+item.id+'" class="overlay">';			
+			divs+='<div class="popup '+bgcolor+'">';
+			divs+='<div class="div-table-row topjust"><div class="popupTable"><div class="circle-blank '+colorO+'">';
+			divs+=formatDate(DateDay.toISOString(), 'MonthOnly')+' <br> <div style="font-size: 40px">'+formatDate(DateDay.toISOString(), 'DayOnly')+ '</div></div></div><div>'
+			divs+=typeLARGE;
+			divs+='<div class="eventtitleLARGE whiteText">' + summary + '</div>';
+			divs +='<div class="eventdateLARGE whiteText">'+ formatDate(eventdate, defaults.timeFormat.trim())+' - '+formatDate(timeend, defaults.timeFormat.trim()) +'</div>';
+			divs+='<a class="close" href="#/">&times;</a>';
+			
+			if(location) {
+				divs +='<div class="locationLARGE whiteText">' + location + '</div>';
+			}
+			
+			
+			if(description) {
+				divs +='<div class="descriptionLARGE whiteText">'+ description +'</div>';
+			}			
+			
+			divs+='<div><a class="Link" target="_blank" href="'+item.htmlLink+'"><br>Open Event in Google Calendar</a><\div>'
+			divs+='</div></div></div>';
+			divs+='</div></div></div>';
+		
+		divsVec+=divs;
+		
+
+		
+		}
+		
+		});
+		
+					BlockDay.setTime(BlockDay.getTime()+AddDaysInMS(1));
+					DateDay.setTime(DateDay.getTime()+AddDaysInMS(1));
+					tableout+='</div>';
+							}
+			tableout+='</div>';
+
+		}
+		tableout+='</div>';
+		tableout+=divsVec;
+		
+		$($div).append(tableout);
+		
+		
+		
+		
+		
+      },
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+      error: function(error) {
+        $($div).append('<p>' + defaults.errorMsg + ' | ' + error + '</p>');
+      }
+    });
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+    function formatDate(strDate, strFormat) {
+      var fd, arrDate, am, time;
+      var calendar = {
+        months: {
+          full: ['', 'January', 'February', 'March', 'April', 'May',
+            'June', 'July', 'August', 'September', 'October',
+            'November', 'December'
+          ],
+          short: ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul',
+            'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+          ]
+        },
+        days: {
+          full: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+            'Friday', 'Saturday', 'Sunday'
+          ],
+          short: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat',
+            'Sun'
+          ]
+        }
+      };
+
+      if (strDate.length > 10) {
+        arrDate = /(\d+)\-(\d+)\-(\d+)T(\d+)\:(\d+)/.exec(strDate);
+
+        am = (arrDate[4] < 12);
+        time = am ? (parseInt(arrDate[4]) + ':' + arrDate[5] + ' AM') : (
+          arrDate[4] - 12 + ':' + arrDate[5] + ' PM');
+
+        if (time.indexOf('0') === 0) {
+          if (time.indexOf(':00') === 1) {
+            if (time.indexOf('AM') === 5) {
+              time = 'MIDNIGHT';
+            } else {
+              time = 'NOON';
+            }
+          } else {
+            time = time.replace('0:', '12:');
+          }
+        }
+
+      } else {
+        arrDate = /(\d+)\-(\d+)\-(\d+)/.exec(strDate);
+        time = 'Time not present in feed.';
+      }
+
+      var year = parseInt(arrDate[1]);
+      var month = parseInt(arrDate[2]);
+      var dayNum = parseInt(arrDate[3]);
+
+      var d = new Date(year, month - 1, dayNum);
+
+      switch (strFormat) {
+        case 'ShortTime':
+          fd = time;
+          break;
+        case 'ShortDate':
+          fd = month + '/' + dayNum + '/' + year;
+          break;
+		case 'DayOnly':
+          fd = dayNum;
+		  break
+		case 'WeekDay':
+		  fd = calendar.days.full[d.getDay()];
+		  break
+		case 'MonthOnly':
+          fd = calendar.months.short[
+            month];
+		  break
+        case 'LongDate':
+          fd = calendar.days.full[d.getDay()] + ' ' + calendar.months.full[
+            month] + ' ' + dayNum + ', ' + year;
+          break;
+        case 'LongDate+ShortTime':
+          fd = calendar.days.full[d.getDay()] + ' ' + calendar.months.full[
+            month] + ' ' + dayNum + ', ' + year + ' ' + time;
+          break;
+		case 'TimeThenDate':
+          fd = time+', '+calendar.days.full[d.getDay()] + ' ' + calendar.months.full[
+            month] + ' ' + dayNum + ', ' + year;
+          break;
+        case 'ShortDate+ShortTime':
+          fd = month + '/' + dayNum + '/' + year + ' ' + time;
+          break;
+        case 'DayMonth':
+          fd = calendar.days.short[d.getDay()] + ', ' + calendar.months.full[
+            month] + ' ' + dayNum;
+          break;
+        case 'MonthDay':
+          fd = calendar.months.full[month] + ' ' + dayNum;
+          break;
+        case 'YearMonth':
+          fd = calendar.months.full[month] + ' ' + year;
+          break;
+        default:
+          fd = calendar.days.full[d.getDay()] + ' ' + calendar.months.short[
+            month] + ' ' + dayNum + ', ' + year + ' ' + time;
+      }
+
+      return fd;
+    }
+	
+	
+	function getSunday(d) {
+	  d = new Date(d);
+	  var day = d.getDay(),
+		  diff = d.getDate() - day -0; // adjust when day is sunday
+	  return new Date(d.setDate(diff));
+	}
+	
+function AddDaysInMS(Days){
+return 1000*60*60*24*Days;
+}
+	
+	
+Date.prototype.toISOString = function() {
+		now = new Date(this)
+        tzo = -now.getTimezoneOffset(),
+        dif = tzo >= 0 ? '+' : '-',
+        pad = function(num) {
+            var norm = Math.abs(Math.floor(num));
+            return (norm < 10 ? '0' : '') + norm;
+        };
+    return now.getFullYear() 
+        + '-' + pad(now.getMonth()+1)
+        + '-' + pad(now.getDate())
+        + 'T' + pad(now.getHours())
+        + ':' + pad(now.getMinutes()) 
+        + ':' + pad(now.getSeconds()) 
+        + dif + pad(tzo / 60) 
+        + ':' + pad(tzo % 60);
+}
+
+	
+  };
+
+}(jQuery));
+
+
+</script>
+
+
+
+
+<script type="text/javascript">
+
+(function($) {
+
+  $.fn.gCalReaderList = function(options) {
+    var $div = $(this);
+
+    var defaults = $.extend({
+        calendarId: 'en.usa#holiday@group.v.calendar.google.com',
+        apiKey: 'Public_API_Key',
+        dateFormat: 'LongDate',
+		timeFormat: 'ShortTime',
+        errorMsg: 'No events in calendar',
+        maxEvents: 7,
+        futureEventsOnly: true,
+        sortDescending: true
+      },
+      options);
+
+    var s = '';
+    var feedUrl = 'https://www.googleapis.com/calendar/v3/calendars/' +
+      encodeURIComponent(defaults.calendarId.trim()) +'/events?key=' + defaults.apiKey +
+      '&orderBy=startTime&singleEvents=true';
+      if(defaults.futureEventsOnly) {
+        feedUrl+='&timeMin='+ new Date().toISOString();
+      }
+
+    $.ajax({
+      url: feedUrl,
+      dataType: 'json',
+      success: function(data) {
+        if(defaults.sortDescending){
+          data.items = data.items.reverse();
+        }
+        data.items = data.items.slice(0, defaults.maxEvents);
+
+        $.each(data.items, function(e, item) {		
+          var eventdate = item.start.dateTime || item.start.date ||'';
+          var summary = item.summary || '';
+		  
+		  var timeend = item.end.dateTime;
+		  
+		  
+			  //Set Color Based on what type of event this is
+			  var color = 'greyMobile';
+			  var bgcolor='greybgMobile';
+			  var type = '';
+			  if ( summary.indexOf('[M]') !== -1 ){
+					color = 'redMobile';
+					bgcolor='redbgMobile';
+					type= '<div class = "eventtypeMobile '+color+' ">MEETING</div>';
+					summary= summary.split(']').pop();					
+			  }
+			  else if ( summary.indexOf('[S]') !== -1 ){
+					color = 'orangeMobile';
+					bgcolor='orangebgMobile';
+					type= '<div class = "eventtypeMobile '+color+' ">SOCIAL EVENT</div>';
+					summary= summary.split(']').pop();					
+			  }
+			  else if ( summary.indexOf('[AT]') !== -1 ){
+					color = 'blueMobile';
+					bgcolor='bluebgMobile';
+					type= '<div class = "eventtypeMobile '+color+' ">ACADEMIC TALK</div>';	
+					summary= summary.split(']').pop();
+			  }
+			  else if ( summary.indexOf('[O]') !== -1 ){
+					color = 'yellowMobile';
+					bgcolor='yellowbgMobile';
+					type= '<div class = "eventtypeMobile '+color+' ">OUTREACH EVENT</div>';
+					summary= summary.split(']').pop();
+			  }
+			  else if ( summary.indexOf('[PT]') !== -1 ){
+					color = 'greenMobile';
+					bgcolor='greenbgMobile';
+					type= '<div class = "eventtypeMobile '+color+' ">PROFESSIONAL TALK</div>'	
+					summary= summary.split(']').pop();
+			  }
+		  
+		  
+					var description = item.description;
+					var location = item.location;
+					
+					s =type+'<div class="eventtitleMobile '+color+'">' + summary + '</div>';
+					s +='<div class="eventdate '+color+'">'+ formatDate(eventdate, defaults.timeFormat.trim())+' - '+formatDate(timeend, defaults.timeFormat.trim()) +'</div>';
+					if(location) {
+						s +='<div class="location '+color+'">' + location + '</div>';
+					}
+					if(description) {
+						s +='<div class="descriptionMobile '+color+'">'+ description +'</div>';
+					}
+					$($div).append('<a class ="mainlinkMobile" target="_blank" href="'+item.htmlLink+'"><div class="contentBoxMobile"><div class="circleMobile"> '+formatDate(eventdate, 'MonthOnly')+' <br> <div style="font-size: 40px">'+formatDate(eventdate, 'DayOnly')+'</div> </div> <div class="contentStuffMobile '+bgcolor+'">' + s + '</div></div></a>');
+        });
+      },
+      error: function(error) {
+        $($div).append('<p>' + defaults.errorMsg + ' | ' + error + '</p>');
+      }
+    });
+
+	
+	
+	    function formatDate(strDate, strFormat) {
+      var fd, arrDate, am, time;
+      var calendar = {
+        months: {
+          full: ['', 'January', 'February', 'March', 'April', 'May',
+            'June', 'July', 'August', 'September', 'October',
+            'November', 'December'
+          ],
+          short: ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul',
+            'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+          ]
+        },
+        days: {
+          full: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+            'Friday', 'Saturday', 'Sunday'
+          ],
+          short: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat',
+            'Sun'
+          ]
+        }
+      };
+
+      if (strDate.length > 10) {
+        arrDate = /(\d+)\-(\d+)\-(\d+)T(\d+)\:(\d+)/.exec(strDate);
+
+        am = (arrDate[4] < 12);
+        time = am ? (parseInt(arrDate[4]) + ':' + arrDate[5] + ' AM') : (
+          arrDate[4] - 12 + ':' + arrDate[5] + ' PM');
+
+        if (time.indexOf('0') === 0) {
+          if (time.indexOf(':00') === 1) {
+            if (time.indexOf('AM') === 5) {
+              time = 'MIDNIGHT';
+            } else {
+              time = 'NOON';
+            }
+          } else {
+            time = time.replace('0:', '12:');
+          }
+        }
+
+      } else {
+        arrDate = /(\d+)\-(\d+)\-(\d+)/.exec(strDate);
+        time = 'Time not present in feed.';
+      }
+
+      var year = parseInt(arrDate[1]);
+      var month = parseInt(arrDate[2]);
+      var dayNum = parseInt(arrDate[3]);
+
+      var d = new Date(year, month - 1, dayNum);
+
+      switch (strFormat) {
+        case 'ShortTime':
+          fd = time;
+          break;
+        case 'ShortDate':
+          fd = month + '/' + dayNum + '/' + year;
+          break;
+		case 'DayOnly':
+          fd = dayNum;
+		  break
+		case 'WeekDay':
+		  fd = calendar.days.full[d.getDay()];
+		  break
+		case 'MonthOnly':
+          fd = calendar.months.short[
+            month];
+		  break
+        case 'LongDate':
+          fd = calendar.days.full[d.getDay()] + ' ' + calendar.months.full[
+            month] + ' ' + dayNum + ', ' + year;
+          break;
+        case 'LongDate+ShortTime':
+          fd = calendar.days.full[d.getDay()] + ' ' + calendar.months.full[
+            month] + ' ' + dayNum + ', ' + year + ' ' + time;
+          break;
+		case 'TimeThenDate':
+          fd = time+', '+calendar.days.full[d.getDay()] + ' ' + calendar.months.full[
+            month] + ' ' + dayNum + ', ' + year;
+          break;
+        case 'ShortDate+ShortTime':
+          fd = month + '/' + dayNum + '/' + year + ' ' + time;
+          break;
+        case 'DayMonth':
+          fd = calendar.days.short[d.getDay()] + ', ' + calendar.months.full[
+            month] + ' ' + dayNum;
+          break;
+        case 'MonthDay':
+          fd = calendar.months.full[month] + ' ' + dayNum;
+          break;
+        case 'YearMonth':
+          fd = calendar.months.full[month] + ' ' + year;
+          break;
+        default:
+          fd = calendar.days.full[d.getDay()] + ' ' + calendar.months.short[
+            month] + ' ' + dayNum + ', ' + year + ' ' + time;
+      }
+
+      return fd;
+    }
+	
+	
+	function getSunday(d) {
+	  d = new Date(d);
+	  var day = d.getDay(),
+		  diff = d.getDate() - day -0; // adjust when day is sunday
+	  return new Date(d.setDate(diff));
+	}
+	
+function AddDaysInMS(Days){
+return 1000*60*60*24*Days;
+}
+	
+	
+Date.prototype.toISOString = function() {
+		now = new Date(this)
+        tzo = -now.getTimezoneOffset(),
+        dif = tzo >= 0 ? '+' : '-',
+        pad = function(num) {
+            var norm = Math.abs(Math.floor(num));
+            return (norm < 10 ? '0' : '') + norm;
+        };
+    return now.getFullYear() 
+        + '-' + pad(now.getMonth()+1)
+        + '-' + pad(now.getDate())
+        + 'T' + pad(now.getHours())
+        + ':' + pad(now.getMinutes()) 
+        + ':' + pad(now.getSeconds()) 
+        + dif + pad(tzo / 60) 
+        + ':' + pad(tzo % 60);
+}
+
+	
+  };
+
+}(jQuery));
+
+
+</script>
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+   jQuery(function ($) {
+       $('#CalendarBlock').gCalReader({
+         calendarId:'seasgc.cal@gmail.com',
+         apiKey:'AIzaSyAVhU0GdCZQidylxz7whIln82rWtZ4cIDQ',
+         sortDescending: false
+        });
+	 });
+</script>
+
+
+<script type="text/javascript">
+   jQuery(function ($) {
+       $('#eventlist').gCalReaderList({
+         calendarId:'seasgc.cal@gmail.com',
+         apiKey:'AIzaSyAVhU0GdCZQidylxz7whIln82rWtZ4cIDQ',
+         sortDescending: false
+        });
+	 });
+</script>
+
+
+
+
+
+<body>
+
+ <div class="largeContainer" style="padding:0px" id="CalendarBlock">
+</div>
+<div>
+<a class="Link" style="font-size: 14px; color: #A51C30 !important" target="_blank" href="https://calendar.google.com/calendar/embed?src=seasgc.cal%40gmail.com&ctz=America/New_York"> SEAS-GC Public Calendar</a>
+</div>
+
+ <div class="mobileContainer" style="padding:0px" id="eventlist">
+</div>
+</body>
+</html>

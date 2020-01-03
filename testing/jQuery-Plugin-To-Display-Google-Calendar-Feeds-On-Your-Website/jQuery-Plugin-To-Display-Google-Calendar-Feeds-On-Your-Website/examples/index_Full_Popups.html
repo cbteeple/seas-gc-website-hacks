@@ -1,0 +1,590 @@
+﻿<!DOCTYPE html>
+
+<head>
+    <title></title>
+    <style type="text/css">
+        #eventlist { list-style:none; padding: 0px}
+        #eventlist li { list-style:none; padding:3px; border-radius: 6px; line-height: 16px; font-size: 14px;}
+		
+		#eventlist li:hover {
+			list-style:none;
+			padding:3px;
+			border-radius: 6px;
+			line-height: 16px;
+			font-size: 14px;
+			opacity: 0.7
+			}
+		
+
+
+		.datagrid{
+			padding: 0px;
+			}
+			
+		.datagrid td{
+			vertical-align: middle;
+			padding:0px;
+		}
+		
+		.datagrid td:first-child{
+			padding: 0px;
+		}
+		
+		.datagrid td:last-child{
+			padding: 0px;
+		}
+		
+		
+		
+		.calgrid{
+			padding: 0px;
+		}
+		
+		.calgrid tr{
+			border: 0px solid #000;
+			padding:0px;
+		}
+		
+		.calgrid th{
+			padding: 7px;
+			text-size: 24px;
+			text-align: left;
+			color: #FFF;
+			background: #A51C30;
+		}
+			
+		.calgrid td{
+			border-bottom: 0px solid #000;
+			vertical-align: top;
+			width: 14%;
+			padding:3px;
+			padding-bottom:25px;
+		}
+			
+		table{
+			padding:0px;
+			vertical-align: middle;
+		}
+		
+		
+		
+		
+		.circle {
+		  width: 50px;
+		  height: 50px;
+		  border-radius: 50%;
+		  font-size: 13px;
+		  color: #000;
+		  text-align: center;
+		  background: #ededed;
+		  line-height: 20px;
+		  font-weight: bold;
+		}
+		
+		.circle-red {
+		  width: 50px;
+		  height: 50px;
+		  border-radius: 50%;
+		  font-size: 13px;
+		  color: #FFF;
+		  text-align: center;
+		  background: #A51C30;
+		  line-height: 20px;
+		  font-weight: bold;		  
+		}
+		
+		
+		.circle-odd {
+		  width: 50px;
+		  height: 50px;
+		  border-radius: 50%;
+		  font-size: 13px;
+		  color: #000;
+		  text-align: center;
+		  background: #FFF;
+		  line-height: 20px;
+		  font-weight: bold;
+		  
+		}
+		
+		
+		
+
+		.todaybox{
+			background: #fff2f3;
+			border-radius: 5px;
+			border-top-left-radius: 28px;
+
+		}
+		
+		.oddbox{
+			background: #ededed;
+
+		}
+
+		
+        .eventtitle { font-weight:bold; font-size: 14px;}
+		.eventtype { font-size: 10px;}
+		.eventdate {font-size: 11px;}
+		.mainlink{text-decoration: none}
+		a{text-decoration: none}
+		.description{padding-top: 10px;}
+		
+		
+		
+		
+		
+		
+		
+		
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 300ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.overlay:target .popup {
+	opacity: 1;
+	transform: scale(1);
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  top: 20%;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  opacity: 1;
+  transform: scale(0);
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #06D85F;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+
+
+@media screen and (max-width: 700px){
+  .box{
+    width: 70%;
+  }
+  .popup{
+    width: 70%;
+  }
+}
+		
+		
+		
+    </style>
+</head>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+(function($) {
+
+  $.fn.gCalReader = function(options) {
+    var $div = $(this);
+
+    var defaults = $.extend({
+        calendarId: 'en.usa#holiday@group.v.calendar.google.com',
+        apiKey: 'Public_API_Key',
+        dateFormat: 'LongDate',
+		timeFormat: 'ShortTime',
+        errorMsg: 'No events in calendar',
+        maxEvents: 100,
+        futureEventsOnly: false,
+        sortDescending: true
+      },
+      options);
+
+    var s = '';
+    var feedUrl = 'https://www.googleapis.com/calendar/v3/calendars/' +
+      encodeURIComponent(defaults.calendarId.trim()) +'/events?key=' + defaults.apiKey +
+      '&orderBy=startTime&singleEvents=true';
+	  
+	  var d2 = new Date();
+	   var d= getSunday(d2);
+
+	  
+		d.setDate(d.getDate()-7);
+
+		//var ed = new Date();
+		//ed.setDate(ed.getDate()+21);
+
+		//d= new Date(getSunday(d));
+		var ed = new Date();
+		ed.setDate(d.getDate()+27);
+
+	  
+        feedUrl+='&timeMin='+ (d).toISOString();
+		feedUrl+='&timeMax='+ (ed).toISOString();
+	  
+
+    $.ajax({
+      url: feedUrl,
+      dataType: 'json',
+      success: function(data) {
+        if(defaults.sortDescending){
+          data.items = data.items.reverse();
+        }
+        data.items = data.items.slice(0, defaults.maxEvents);
+
+		//Build Calendar grid
+		var tableout='<table class="calgrid">';
+				
+		//Build the Header
+		var testdate = new Date();
+				testdate= getSunday(testdate);
+
+		for(var i=0; i<7; i++){
+			tableout+='<th>'
+			tableout+=formatDate(testdate.toISOString(), 'WeekDay');
+			
+			tableout+='</th>'
+			testdate.setDate(testdate.getDate()+1);
+		}
+		
+		var divsVec='';
+		
+		var BlockDay=new Date(d);
+		var DateDay=new Date(d);
+		DateDay.setDate(DateDay.getDate());
+		var today = new Date();
+		for (var k=0; k<4; k++ ){
+			tableout+='<tr>';
+			for (var j=0; j<7;j++ ){
+                var todayclass='';
+                var circlass='circle';
+					if(DateDay.getDate()==today.getDate()){
+					circlass='circle-red';
+					todayclass='class="todaybox"';
+					
+					}
+					else if(DateDay.getMonth()!=today.getMonth()){
+						todayclass='class="oddbox"';
+						circlass='circle-odd';
+					}
+					
+				tableout+='<td '+todayclass+'>';
+
+			tableout+='<div class="'+circlass+'">';
+			tableout+=formatDate(DateDay.toISOString(), 'MonthOnly')+' <br> <div style="font-size: 30px">'+formatDate(DateDay.toISOString(), 'DayOnly')+ '</div></div>'
+					
+		
+		//for each day in the calendar, check if the 
+        $.each(data.items, function(e, item) {	
+		  var timeend = item.end.dateTime;
+		  var startdate=item.start.dateTime;		
+		  var actualdate = new Date(startdate);
+		  var weekday = actualdate.getDay();
+		
+		  //If the date and day of the week matches, inject the event into the table
+						
+			if (actualdate.getDate()==BlockDay.getDate()){
+							
+			
+          var eventdate = item.start.dateTime || item.start.date ||'';
+          var summary = item.summary || '';
+		  
+
+		  
+
+		  
+		  
+			  //Set Color Based on what type of event this is
+			  var color = '#000000';
+			  var bgcolor = '#FFFFFF';
+			  var type = '';
+			  if ( summary.indexOf('[M]') !== -1 ){
+					bgcolor = '#ffe8e8';
+					color= '#c60000';
+					type= '<div class = "eventtype" style="color: '+color+'">MEETING</div>'
+					summary= summary.split(']').pop();					
+			  }
+			  else if ( summary.indexOf('[AT]') !== -1 ){
+					color = '#0089b7';
+					bgcolor='#eafaff';
+					type= '<div class = "eventtype" style="color: '+color+'">ACADEMIC TALK</div>'
+					summary= summary.split(']').pop();
+			  }
+			  else if ( summary.indexOf('[O]') !== -1 ){
+					color = '#bf6900';
+					bgcolor='#fff8e8';
+					type= '<div class = "eventtype" style="color: '+color+'">OUTREACH EVENT</div>'	
+					summary= summary.split(']').pop();
+			  }
+			  else if ( summary.indexOf('[PT]') !== -1 ){
+					color = '#009600';
+					bgcolor='#eaffef';
+					type= '<div class = "eventtype" style="color: '+color+'">PROFESSIONAL TALK</div>'	
+					summary= summary.split(']').pop();
+			  }
+		  
+		  
+					var description = item.description;
+					var location = item.location;
+					
+					s =type+'<div class="eventtitle" style="color: '+color+'">' + summary + '</div>';
+					s +='<div class="eventdate" style="color: '+color+'">'+ formatDate(eventdate, defaults.timeFormat.trim())+' - '+formatDate(timeend, defaults.timeFormat.trim()) +'</div>';
+					
+					/*
+					if(location) {
+						s +='<div class="location" style="color: '+color+'">' + location + '</div>';
+					}
+					
+					
+					if(description) {
+						s +='<div class="description" style="color: '+color+'">'+ description +'</div>';
+					}
+					*/
+		
+		outstr='';
+		outstr+='<li style=" margin:5px; background-color: '+bgcolor+'; border:1px dotted '+color;
+			
+		
+		
+		outstr+='"><a style ="mainlink" href="#'+item.id+'">' + s + '</a></li>';
+		//outstr+='"><a style ="mainlink" target="_blank" href="'+item.htmlLink+'">' + s + '</a></li>';
+
+		//tableout+='<tr>';
+	
+	
+		//tableout+='</tr>';
+		tableout+=outstr;
+		
+		
+		
+		
+		
+		//Create HTML for the Popups
+		/*
+			var divs = '';
+	
+			divs+='<div id="'+item.id+'" class="overlay">';
+			divs+='<div class="popup">';
+			divs+='<h2>'+summary+'</h2>';
+			divs+='<a class="close" href="#">&times;</a>';
+			divs+='<div class="content">';
+			divs+=description;
+			divs+='</div>';
+			divs+='</div>';
+			divs+='</div>';
+		
+		divsVec+=divs;
+		*/
+		}
+		
+		
+		
+		});
+		
+					BlockDay.setDate(BlockDay.getDate()+1);
+					DateDay.setDate(DateDay.getDate()+1);
+					tableout+='</td>';
+							}
+			tableout+='</tr>';
+
+		}
+		tableout+='</table>';
+		
+		$($div).append(tableout);// + divsVec);
+				
+      },
+      error: function(error) {
+        $($div).append('<p>' + defaults.errorMsg + ' | ' + error + '</p>');
+      }	
+	
+	
+
+	
+	
+	
+
+    function formatDate(strDate, strFormat) {
+      var fd, arrDate, am, time;
+      var calendar = {
+        months: {
+          full: ['', 'January', 'February', 'March', 'April', 'May',
+            'June', 'July', 'August', 'September', 'October',
+            'November', 'December'
+          ],
+          short: ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul',
+            'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+          ]
+        },
+        days: {
+          full: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+            'Friday', 'Saturday', 'Sunday'
+          ],
+          short: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat',
+            'Sun'
+          ]
+        }
+      };
+
+      if (strDate.length > 10) {
+        arrDate = /(\d+)\-(\d+)\-(\d+)T(\d+)\:(\d+)/.exec(strDate);
+
+        am = (arrDate[4] < 12);
+        time = am ? (parseInt(arrDate[4]) + ':' + arrDate[5] + ' AM') : (
+          arrDate[4] - 12 + ':' + arrDate[5] + ' PM');
+
+        if (time.indexOf('0') === 0) {
+          if (time.indexOf(':00') === 1) {
+            if (time.indexOf('AM') === 5) {
+              time = 'MIDNIGHT';
+            } else {
+              time = 'NOON';
+            }
+          } else {
+            time = time.replace('0:', '12:');
+          }
+        }
+
+      } else {
+        arrDate = /(\d+)\-(\d+)\-(\d+)/.exec(strDate);
+        time = 'Time not present in feed.';
+      }
+
+      var year = parseInt(arrDate[1]);
+      var month = parseInt(arrDate[2]);
+      var dayNum = parseInt(arrDate[3]);
+
+      var d = new Date(year, month - 1, dayNum);
+
+      switch (strFormat) {
+        case 'ShortTime':
+          fd = time;
+          break;
+        case 'ShortDate':
+          fd = month + '/' + dayNum + '/' + year;
+          break;
+		case 'DayOnly':
+          fd = dayNum;
+		  break
+		case 'WeekDay':
+		  fd = calendar.days.full[d.getDay()];
+		  break
+		case 'MonthOnly':
+          fd = calendar.months.short[
+            month];
+		  break
+        case 'LongDate':
+          fd = calendar.days.full[d.getDay()] + ' ' + calendar.months.full[
+            month] + ' ' + dayNum + ', ' + year;
+          break;
+        case 'LongDate+ShortTime':
+          fd = calendar.days.full[d.getDay()] + ' ' + calendar.months.full[
+            month] + ' ' + dayNum + ', ' + year + ' ' + time;
+          break;
+		case 'TimeThenDate':
+          fd = time+', '+calendar.days.full[d.getDay()] + ' ' + calendar.months.full[
+            month] + ' ' + dayNum + ', ' + year;
+          break;
+        case 'ShortDate+ShortTime':
+          fd = month + '/' + dayNum + '/' + year + ' ' + time;
+          break;
+        case 'DayMonth':
+          fd = calendar.days.short[d.getDay()] + ', ' + calendar.months.full[
+            month] + ' ' + dayNum;
+          break;
+        case 'MonthDay':
+          fd = calendar.months.full[month] + ' ' + dayNum;
+          break;
+        case 'YearMonth':
+          fd = calendar.months.full[month] + ' ' + year;
+          break;
+        default:
+          fd = calendar.days.full[d.getDay()] + ' ' + calendar.months.short[
+            month] + ' ' + dayNum + ', ' + year + ' ' + time;
+      }
+
+      return fd;
+    }
+	
+	
+	function getSunday(d) {
+	  d = new Date(d);
+	  var day = d.getDay(),
+		  diff = d.getDate() - day -0; // adjust when day is sunday
+	  return new Date(d.setDate(diff));
+	}
+	
+	
+	
+Date.prototype.toISOString = function() {
+		now = new Date(this)
+        tzo = -now.getTimezoneOffset(),
+        dif = tzo >= 0 ? '+' : '-',
+        pad = function(num) {
+            var norm = Math.abs(Math.floor(num));
+            return (norm < 10 ? '0' : '') + norm;
+        };
+    return now.getFullYear() 
+        + '-' + pad(now.getMonth()+1)
+        + '-' + pad(now.getDate())
+        + 'T' + pad(now.getHours())
+        + ':' + pad(now.getMinutes()) 
+        + ':' + pad(now.getSeconds()) 
+        + dif + pad(tzo / 60) 
+        + ':' + pad(tzo % 60);
+}
+
+	
+  };
+
+}(jQuery));
+
+
+</script>
+
+<script type="text/javascript">
+   jQuery(function ($) {
+       $('#eventlist').gCalReader({
+         calendarId:'seasgc.cal@gmail.com',
+         apiKey:'AIzaSyAVhU0GdCZQidylxz7whIln82rWtZ4cIDQ',
+         sortDescending: false
+        });
+	 });
+</script>
+<body>
+
+ <ul style="padding:0px" id="eventlist">
+</ul>
+<b><a target="_blank" href="https://calendar.google.com/calendar/embed?src=seasgc.cal%40gmail.com&ctz=America/New_York"> SEAS-GC Public Calendar</a><b>
+
+</body>
+</html>

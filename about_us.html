@@ -1,0 +1,395 @@
+
+<!-- Place one of these in each member profile tab -->
+<div id="Placeholder_CurrMembers" class="clear">
+</div>
+
+<div id="Placeholder_Alumni" class="clear">
+</div>
+
+<div id="Placeholder_Officers" class="clear">
+</div>
+
+
+
+<!-- You only need this for local testing -->
+<link rel = "stylesheet"
+   type = "text/css"
+   href = "main.css" />
+
+
+
+<!-- Place this once in a widgit underneath the profile tabs -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    var key='AIzaSyBjvM6POir0MwURZyekJSdMiqbfW_E1pyM';
+</script>
+
+
+<script type="text/javascript">
+
+// Helper defs
+Array.prototype.contains = function(obj) {
+    return this.indexOf(obj);
+};
+
+
+
+// Define the tag handler class (parse tags)
+var tagHandler = function(options){
+
+    // Variables accessible in the class
+    var vars = {
+        tagDict : null,
+    };
+  
+    // Constructor
+    this.construct = function(options){
+        $.extend(vars , options);
+    };
+
+    this.construct(options);
+
+
+    // Convert the annoyingly complex tag list from google sheets to a simple dictionary
+    var getTagList = function(){
+        var tagArr=[];
+        var urlArr=[];
+        var out={};
+            
+        for (var i=0; i<vars.tagDict.length; i++){
+            var out_i={};
+            tagArr[i]=vars.tagDict[i].gsx$tag.$t;
+            urlArr[i]=vars.tagDict[i].gsx$url.$t;
+        }
+        out.tag=tagArr;
+        out.url=urlArr;
+        
+        return out;
+
+    };
+
+    var tagS = getTagList();
+
+
+    // Find and format tags from an initiative listing
+    this.getTags = function(initiatives){
+
+        var tagArr=tagS.tag;
+        var urlArr=tagS.url;
+
+        var entries = initiatives.split(", ");
+        var outStr="";
+
+        for (var i=0; i < entries.length; i++){
+            var idx = tagArr.contains(entries[i]);
+            if (i!=0){
+                outStr += ', ';
+            }
+            if(idx>-1){
+            
+                var targ = '';
+                if (!urlArr[idx].includes('gc.seas.harvard')){
+                    targ = 'target="_blank"';
+                }
+                
+                
+                outStr += '<a ' +targ+' href="' + urlArr[idx] + '">'; 
+                outStr += entries[i] +"</a>";
+                
+            }
+            else{
+                outStr += entries[i];
+            }
+        }
+        
+
+        
+    return outStr
+    };
+
+};
+
+
+// Define the display hander class (display items nicely using HTML and CSS)
+var displayHandler = function(options){
+
+     // Variables accessible in the class
+    var vars = {
+        tagHandle : null,
+    };
+ 
+    // Can access this.method inside other methods using root.method()
+    var root = this;
+ 
+    // Constructor
+    this.construct = function(options){
+        $.extend(vars , options);
+    };
+
+    // Pass options when class instantiated
+    this.construct(options);
+
+
+
+
+    const ButtonItem = ({ directURL, imgURL, name, title, initiatives, blurb,size }) => `
+    <div class="${size} aboutbutton">
+        <a target="_blank" href="https://connections.harvard.edu/search/pageNum/0/resultsPerPage/10?name=${directURL}">
+            <img class="image" src="https://gc.seas.harvard.edu/files/seas-gc/files/${imgURL}">
+        </a>
+        
+        <div class="name">
+            ${name}
+        </div>
+        <div class="title">
+            ${title}
+        </div>
+        
+        <div class="initiatives">
+            <div class="initlabel">
+                Initiatives:
+            </div>
+        ${initiatives}
+        </div>
+        
+        <div class="blurb">
+        ${blurb}
+        </div>            
+    </div>   
+    `;
+
+
+    const SepDivStartItem = ({ memberType, memberTypeID, sectionBackground }) => `
+
+
+    <div class="aboutusSections ${sectionBackground}">
+        <div class="clear aboutusCategories">
+            <h3>
+                ${memberType}
+            </h3>
+        </div>
+        
+            <div id="${memberTypeID}" class="clear">
+            
+            
+            </div>
+    </div>
+                
+                
+    `;
+
+
+
+    //Load tha page after all of the data is retrieved
+    this.loadPage = function(sheet, element){
+        profiles=sheet.data.feed.entry;
+        var sectionName = sheet.name;
+
+
+        var AllVec=[];
+        var MemberType=[];
+        var MemberTypeIter=-1;
+        var MemberSize='';
+
+
+        $.each( profiles, function( index, value ){ 
+            var out={};
+            var outMember={};
+            
+            MemberTypeCurr=value.gsx$type.$t;
+            if (MemberTypeCurr){
+                MemberTypeIter=MemberTypeIter+1;
+                AllVec[MemberTypeIter]=[];
+                outMember.memberType=MemberTypeCurr;
+                outMember.memberTypeID = sectionName+'MemberCategory'+MemberTypeIter.toString();
+                if (MemberTypeCurr.includes("Alumni") ){
+                    outMember.sectionBackground = 'aboutusLightGray';
+                    MemberSize = 'aboutus aboutusAlum';
+                    
+                    }
+                else if(MemberTypeCurr.includes("Previous")){
+                    outMember.sectionBackground = '';
+                    MemberSize = 'aboutus aboutusPrevious';
+                }
+                else{
+                    outMember.sectionBackground = '';
+                    MemberSize = 'aboutus aboutusSmall';
+                }
+            
+                MemberType.push(outMember);
+
+            
+            }
+            
+            else{
+            //console.log(MemberSize)
+            out.title=value.gsx$title.$t;
+            out.name=value.gsx$name.$t;
+            out.imgURL=value.gsx$image.$t;
+            out.directURL=value.gsx$name.$t;
+            out.initiatives=vars.tagHandle.getTags(value.gsx$initiatives.$t);
+            out.blurb=value.gsx$blurb.$t;
+            out.size=MemberSize;
+            
+            if (!Boolean(out.imgURL)){
+            out.imgURL='placeholder.png';
+            }
+            
+                
+            AllVec[MemberTypeIter].push(out);
+
+            
+            
+            }
+
+        });
+
+
+        updatePage(element, MemberType, AllVec, sectionName)
+
+    };
+
+    var updatePage = function(element, MemberType, AllVec, sectionName){
+        var AllMembersContainer = document.getElementById(element);
+
+        //Create Divs for each type of member
+        AllMembersContainer.innerHTML=AllMembersContainer.innerHTML + MemberType.map(SepDivStartItem).join('');
+
+        //Place buttons in the divs
+        for(var i=0; i<AllVec.length; i++){
+            var MembersContainer = document.getElementById(sectionName+'MemberCategory'+i.toString());
+            MembersContainer.innerHTML=MembersContainer.innerHTML + AllVec[i].map(ButtonItem).join('');
+
+        }
+    };
+
+
+};
+
+
+
+
+
+
+// Define the info handler class (get data from a google sheet)
+var memberInfoHandler = function(options){
+    
+    // Variables accessible in the class
+    var vars = {
+        tagSheetNum : null,
+    };
+ 
+    // Can access this.method inside other methods using root.method()
+    var root = this;
+ 
+    // Constructor
+    this.construct = function(options){
+        $.extend(vars , options);
+    };
+
+    // Pass options when class instantiated
+    this.construct(options);
+
+    var prefix  = 'https://spreadsheets.google.com/feeds/list/';
+    var sheetID_init = '1tsS4xueeKgxw9pcrLYtZfX8mk5YOS8ykbROqNYPIhLQ';
+    var suffix  = '/public/values?alt=json';
+
+    var createSheetName = function(sheetNum, sheetName) {
+        var out = {
+            prefix : prefix,
+            suffix : suffix,
+            id     : sheetID_init,
+            num    : sheetNum,
+            url    : null,
+            name   : sheetName,
+        }
+
+        if (sheetNum != null){
+            out.url= prefix+sheetID_init+'/'+sheetNum.toString()+suffix;
+        }
+
+        return out;
+    };
+
+
+    // Callback for data gotten with ajax
+    var dataOutCallback = function(data,sheet){
+        sheet.data = data;
+    };
+
+    // Use ajax to get data from a google sheet defined by a sheet object
+    var getGoogleSheetValue = function(sheet){
+        $.ajax({ 
+            type: "GET", 
+            url: sheet.url, 
+            //dataType: 'jsonp',
+            async: false,
+            success: function(dataWeGotViaJsonp){
+                dataOutCallback(dataWeGotViaJsonp, sheet);
+            }
+       });
+    };
+
+
+    // Public class to load data from a sheet
+    this.loadSheet = function(sheetNum, sheetName, saveSheet){
+        memSheet = createSheetName(sheetNum, sheetName);
+        getGoogleSheetValue(memSheet);
+
+        if (arguments.length<3){
+            this.currentSheet = memSheet;
+        }
+        else if (arguments.length==3){
+            if (arguments[2] == true){
+                this.currentSheet = memSheet;
+            }
+        }
+        return memSheet;
+    };
+
+
+    // Get and parse tags upon class instantiation
+    var tagSheet   = this.loadSheet(vars.tagSheetNum, 'tags', false);
+    var handleTags = new tagHandler({tagDict : tagSheet.data.feed.entry});
+    var handleDisplay = new displayHandler({tagHandle: handleTags });
+
+    this.updatePage = function(sheet, element){
+        if (arguments.length == 2){
+            handleDisplay.loadPage(arguments[0] ,arguments[1]);
+        }
+        else if (arguments.length==1){
+            handleDisplay.loadPage(this.currentSheet ,arguments[0]);
+        }
+        
+    };
+
+};
+
+
+
+// Create a new info handler and get the associated tag handler
+memberInfo = new memberInfoHandler({tagSheetNum : 1});
+
+
+window.googleDocCallback = function () { return true; };
+
+
+</script>
+
+
+<!-- Get the data for each profile page -->
+<script type="text/javascript">
+memberInfo.loadSheet(2, 'members');
+memberInfo.updatePage('Placeholder_CurrMembers')
+</script>
+
+<script type="text/javascript">
+memberInfo.loadSheet(3, 'alumni');
+memberInfo.updatePage('Placeholder_Alumni')
+</script>
+
+<script type="text/javascript">
+memberInfo.loadSheet(4, 'officers');
+memberInfo.updatePage('Placeholder_Officers')
+</script>

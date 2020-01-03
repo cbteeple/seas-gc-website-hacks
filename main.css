@@ -1,0 +1,519 @@
+<style>
+
+#columns .block-boxes-os_boxes_html a, #columns .field-name-body a{
+    text-decoration: none;
+	font-weight: bold;
+}
+
+#menu-bar {
+	    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+	
+}
+
+.clear {
+    clear: both;
+}
+
+
+
+.circleFifty {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+border-style:solid ;
+border-color: #fff;
+border-width: 1px;
+  font-size: 20px;
+line-height: 30px;
+text-align: center;
+  color: #fff;
+  background: rgb(2, 136, 209);
+box-shadow: 1px 1px 2px grey;
+}
+
+
+.aboutus{
+	width: 18%;
+	padding: 0.75%;
+	/*float: left;*/
+	display: inline-block;
+	vertical-align: top;	
+	line-height: 120%;
+	text-decoration: none;
+    //color: #A51C30;
+	text-align: left;
+	font-size: 9.5pt;
+	position: relative;
+	
+	
+}
+
+	.aboutusSmall{
+	width: 12%;
+
+	
+	
+}
+
+	.aboutusAlum {
+		width:14%;
+	}
+
+	.aboutusPrevious {
+		width:12%;
+	}
+
+
+.aboutus .name{
+	text-align: center;
+	font-size: 13pt;
+	font-weight: bold;
+	line-height: 100%;
+	padding-top: 8px;
+	padding-bottom: 4px;
+
+}
+
+.aboutus .title{
+	text-align: center;
+	font-size: 11pt;
+	font-style: italic;	
+	line-height: 100%;
+	padding-bottom: 6px;
+	font-weight: normal;
+
+}
+
+
+
+.aboutus .initiatives{
+	font-size: 10pt;
+	font-weight: bold;
+	padding-top:10px;
+	padding-bottom: 10px;
+
+}
+
+
+
+.aboutusPrevious .initiatives{
+	display:none;
+
+}
+
+
+.aboutus .initlabel{
+	font-size: 9pt;
+	font-weight: normal;
+	display: inline-block;
+	
+}
+
+
+.aboutus .image{
+	border-radius: 10px;
+	width:100%;
+	object-fit: cover;
+	margin-bottom:10px;
+	    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+	
+}
+
+.aboutus .image:hover{
+	transform: scale(1.02);
+	
+}
+
+.aboutus .blurb{
+	text-align:left;
+	font-weight: normal;	
+
+}
+
+.aboutusCategories{
+	padding-top:10px;
+	
+}
+
+.aboutusLightGray{
+	background-color: #F3F3F1;
+	
+}
+
+
+
+
+.aboutbutton{
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+
+}
+
+
+
+.aboutus a{
+	/*display: block;*/
+	text-decoration:none;
+	font-weight: bold;
+}
+
+.aboutus a:hover, a:visited, a:active{
+	color: #e01d00;
+	/*display: block;*/
+	text-decoration:underline;
+}
+
+
+
+.smallbuttonsTOP{
+	width: 20%;
+	float: right;
+	display: block;
+	overflow: visible;
+	position:relative;
+}
+
+.buttonpicsmall{
+	text-decoration: none;
+    color: #A51C30;
+	vertical-align: top;
+	float: left;
+	display: inline-block;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+.buttonpicsmall:hover, .buttonpicsmall:active, .buttonpicsmall:focus {
+	color: #e01d00;
+	transform: scale(1.2);
+}
+
+
+.doublebutton{
+	width:49%;
+	padding-right: 5%;
+	padding-left: 5%;
+	display: block;
+}
+
+.singlebutton{
+	width:24%;
+	padding-right: 5%;
+	padding-left: 5%;
+	display: block;
+}
+
+.pics{
+	width: 100% !important;
+	max-width: 100% !important
+}
+
+
+.buttonpic{
+    text-decoration: none;
+    color: #A51C30;
+	vertical-align: top;
+	float: left;
+	display: inline-block;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+
+}
+
+.buttonpic:hover, .buttonpic:active, .buttonpic:focus {
+	color: #e01d00;
+	transform: scale(1.1);
+}
+
+
+
+.buttonpicbox{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+.buttonpicbox:hover, .buttonpicbox:active, .buttonpicbox:focus {
+	background-color: #F3F3F1;
+	transform: scale(1.05);
+}
+
+
+
+
+
+a{
+    text-decoration: none;
+    color: #A51C30;
+    -webkit-transition: color 0.3s;
+    transition: color 0.3s;
+}
+
+a:visited {
+    text-decoration: none;
+	color: #A51C30;
+}
+
+a:hover {
+    color: #e01d00;
+	text-decoration: none;
+}
+
+a:active {
+    color: #e01d00;
+}
+
+
+
+.nicebuttons{
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 100%;
+}
+
+.sitehead{
+	font-size: 50px;
+	line-height: 120%;
+	color: #000000;
+	padding-bottom: 10px;
+}
+
+.sitedescription{
+	font-size: 18px;
+	line-height: 100%;
+	color: #000000;
+}
+
+@media screen and (min-width: 0px) {
+    .nicebuttons {
+        font-size: 3.6vw;
+    }
+		
+	.sitehead {
+		font-size: 10vw;
+	}
+	.sitedescription{
+		font-size: 3.6vw;
+	}
+	
+	.smallbuttonsTOP{
+		width: 40% !important;
+		float: right !important;	
+	}
+	
+	
+	.aboutus{
+	width:98%;
+	padding-bottom:4%;
+	}
+	
+
+	
+	.aboutus .image{
+		float: left;
+		width:31%;
+		margin-right:10px;
+		margin-bottom:2px;
+	}
+	
+	
+	
+	.aboutusSmall .image{
+		float: left;
+		width:18%;
+		margin-right:10px;
+		margin-bottom:2px;
+	}
+	
+	.aboutusAlum .image{
+		float: left;
+		width:15%;
+		margin-right:5px;
+		margin-bottom:2px;
+	}
+
+
+	.aboutusPrevious .image{
+		float: left;
+		width:12%;
+		margin-right:5px;
+		margin-bottom:2px;
+	}
+	
+	
+	
+	.aboutus .name{
+		display:inline-block;	
+	}
+	
+	.aboutus .title{
+		display:inline-block;	
+	}
+	
+
+	
+}
+
+@media screen and (min-width: 479px) {
+    .nicebuttons {
+        font-size: 2.7vw;
+    }
+
+	.sitehead {
+		font-size: 7vw;
+	}
+	.sitedescription{
+		font-size: 2.7vw;
+	}
+	
+	.smallbuttonsTOP{
+		width: 30% !important;
+		float: right !important;	
+	}
+	
+
+}
+
+
+@media screen and (min-width: 767px) {
+    .nicebuttons {
+        font-size: 1.9vw;
+    }
+	
+	.sitehead {
+		font-size: 6vw;
+	}
+	.sitedescription{
+		font-size: 1.9vw;
+	}
+	.smallbuttonsTOP{
+		width: 23% !important;
+		float: right !important;
+	}
+	
+	.aboutus{
+		width:31.3%;
+	}
+	
+	.aboutusSmall{
+		width:22.75%;
+	}
+	
+	.aboutusAlum{
+		width:18%;
+	}
+	
+	.aboutusPrevious {
+		width:15%;
+	}
+
+	
+	.aboutus .name{
+		display:block;	
+	}
+	
+	.aboutus .title{
+		display:block;	
+	}
+	
+	
+	.aboutus .image{
+		width:100%;
+		clear: both;
+		margin-bottom:10px;
+		
+	}
+
+	
+	
+}
+
+
+@media screen and (min-width: 1008px) {
+    .nicebuttons {
+        font-size: 18px;
+    }
+	
+	.sitehead {
+		font-size: 50px;
+	}
+	.sitedescription{
+		font-size: 18px;
+	}
+	
+	.smallbuttonsTOP{
+		width: 20% !important;
+		float: right !important;
+	}
+	.aboutus{
+	width:22.75%;
+	}
+	
+	.aboutusSmall{
+	width:18%;
+	}
+	
+	.aboutusAlum{
+		width:14%;
+	}
+
+	.aboutusPrevious {
+		width:12%;
+	}
+	
+}
+
+</style>
+
+<script>
+
+jQuery(function ($) {
+    $('document.body').autolink();
+});
+
+</script>
+
+<script type="text/javascript">
+
+
+jQuery(function($) {
+    var re = /((http|https|ftp):\/\/[a-zа-я0-9\w?=&.\/-;#~%-]+(?![a-zа-я0-9\w\s?&.\/;#~%"=-]*>))/g;
+    function makeHTML(textNode) {
+        var source = textNode.data;
+        return source.replace(re, function() {
+            var url = arguments[0];
+            var a = $('<a></a>').attr({'onclick' : 'window.open(\'' + url + '\'); return false;','href': '#', 'target': '_blank'}).text(url);
+            return url.match(/^https?:\/\/$/) ? url : $('<div></div>').append(a).html();
+        });
+    };
+    function eachText(node, callback) {
+        $.each(node.childNodes, function() {
+            if (this.nodeType != 8 && this.nodeName != 'A') {
+                this.nodeType != 1 ? callback(this) : eachText(this, callback);
+            }
+        });
+    };
+    $.fn.autolink = function() {
+        return this.each(function() {
+            var queue = [];
+            eachText(this, function(e) {
+                var html = makeHTML(e);
+                if (html != e.data) {
+                    queue.push([e, makeHTML(e)]);
+                }
+            });
+            $.each(queue, function(i, x) {
+                $(x[0]).replaceWith(x[1]);
+            });
+        });
+    };
+});
+
+
+
+</script>

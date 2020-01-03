@@ -1,0 +1,447 @@
+﻿<!DOCTYPE html>
+
+<head>
+    <title></title>
+    <style type="text/css">
+		
+		.contentBoxMobile{
+			display: flex;
+			display: -webkit-flex;
+			//justify-content: center;
+			align-items: center; 
+			-webkit-transition: all 0.2s;
+			transition: all 0.2s;
+		}
+
+		
+		
+
+		
+		
+		
+        .contentStuffMobile {
+			list-style:none;
+			padding:3px;
+			border-radius: 6px;
+			line-height: 16px;
+			font-size: 14px;
+			display: inline-block;
+			width: 100%;
+			
+		}	
+		
+		.contentBoxMobile .contentStuffMobile{
+			-webkit-transition: all 0.15s;
+			transition: all 0.15s;
+		}
+		
+		.contentBoxMobile:hover .contentStuffMobile {
+			opacity: 0.7;
+		}
+		
+
+
+
+
+		
+		.circleMobile {
+		  width: 70px;
+		  min-width:70px;
+		  height: 70px;
+		  min-height:70px;
+		  border-radius: 50%;
+		  font-size: 16px;
+		  color: #000;
+		  text-align: center;
+		  background: #ededed;
+		  line-height: 26px;
+		  font-weight: bold;
+		  display: inline-block;
+		}		
+
+		.contentBoxMobile .circleMobile{
+			-webkit-transition: all 0.15s;
+			transition: all 0.15s;
+		}
+		.contentBoxMobile:hover .circleMobile {
+			transform: scale(1.1);
+		}	
+		
+		
+		
+		
+		
+
+		
+        .eventtitleMobile {
+			font-weight:bold;
+			font-size: 16px;
+			}
+			
+		.eventtypeMobile {
+			font-size: 11px;
+			}
+			
+		.mainlinkMobile{
+			text-decoration: none
+			}
+			
+		a{
+			text-decoration: none
+			}
+			
+		.descriptionMobile{
+			padding-top: 10px;
+			}
+	
+
+
+	@media screen and (min-width: 0px) {
+		.descriptionMobile{
+		display: inline;
+		}
+	}
+	
+	
+	@media screen and (min-width: 479px) {
+		.descriptionMobile{
+		display: inline;
+		}
+	}
+
+
+	@media screen and (min-width: 767px) {
+		.descriptionMobile{
+			display: none;
+		}
+	}
+	
+	@media screen and (min-width: 1008px) {
+		.descriptionMobile{
+		display: inline;
+		}
+	}
+
+
+
+
+	
+
+		
+.redMobile{
+	color: #c60000 !important;
+}
+
+.redbgMobile{
+	color: #c60000 !important;
+	margin:5px;
+	background: #ffe8e8;
+	border:1px dotted #c60000;
+}
+
+
+
+
+.blueMobile{
+	color: #0089b7 !important;
+}
+
+.bluebgMobile{
+	color: #0089b7 !important;
+	margin:5px;
+	background: #eafaff;
+	border:1px dotted #0089b7;
+
+}
+
+
+
+.orangeMobile{
+	color: #db5b00 !important;
+}
+
+.orangebgMobile{
+	color: #db5b00 !important;
+	margin:5px;
+	background: #ffede0;
+	border:1px dotted #db5b00;
+
+}
+
+
+
+
+
+.yellowMobile{
+	color: #bf6900 !important;
+}
+
+.yellowbgMobile{
+	color: #bf6900 !important;
+	margin:5px;
+	background: #fff8e8;
+	border:1px dotted #bf6900;
+
+}
+
+
+
+
+
+.greenMobile{
+	color: #009600 !important;
+}
+
+.greenbgMobile{
+	color: #009600 !important;
+	margin:5px;
+	background: #eaffef;
+	border:1px dotted #009600;
+}
+
+
+
+
+
+
+
+
+.greyMobile{
+	color: #5c5f60 !important;
+}
+
+.greybgMobile{
+	color: #5c5f60 !important;
+	margin:5px;
+	background: #f9f9f9;
+	border:1px dotted #5c5f60;
+}
+
+		
+		
+		
+		
+		
+		
+		
+    </style>
+</head>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+(function($) {
+
+  $.fn.gCalReaderList = function(options) {
+    var $div = $(this);
+
+    var defaults = $.extend({
+        calendarId: 'en.usa#holiday@group.v.calendar.google.com',
+        apiKey: 'Public_API_Key',
+        dateFormat: 'LongDate',
+		timeFormat: 'ShortTime',
+        errorMsg: 'No events in calendar',
+        maxEvents: 7,
+        futureEventsOnly: true,
+        sortDescending: true
+      },
+      options);
+
+    var s = '';
+    var feedUrl = 'https://www.googleapis.com/calendar/v3/calendars/' +
+      encodeURIComponent(defaults.calendarId.trim()) +'/events?key=' + defaults.apiKey +
+      '&orderBy=startTime&singleEvents=true';
+      if(defaults.futureEventsOnly) {
+        feedUrl+='&timeMin='+ new Date().toISOString();
+      }
+
+    $.ajax({
+      url: feedUrl,
+      dataType: 'json',
+      success: function(data) {
+        if(defaults.sortDescending){
+          data.items = data.items.reverse();
+        }
+        data.items = data.items.slice(0, defaults.maxEvents);
+
+        $.each(data.items, function(e, item) {		
+          var eventdate = item.start.dateTime || item.start.date ||'';
+          var summary = item.summary || '';
+		  
+		  var timeend = item.end.dateTime;
+		  
+		  
+			  //Set Color Based on what type of event this is
+			  var color = 'greyMobile';
+			  var bgcolor='greybgMobile';
+			  var type = '';
+			  if ( summary.indexOf('[M]') !== -1 ){
+					color = 'redMobile';
+					bgcolor='redbgMobile';
+					type= '<div class = "eventtypeMobile '+color+' ">MEETING</div>';
+					summary= summary.split(']').pop();					
+			  }
+			  else if ( summary.indexOf('[S]') !== -1 ){
+					color = 'orangeMobile';
+					bgcolor='orangebgMobile';
+					type= '<div class = "eventtypeMobile '+color+' ">SOCIAL EVENT</div>';
+					summary= summary.split(']').pop();					
+			  }
+			  else if ( summary.indexOf('[AT]') !== -1 ){
+					color = 'blueMobile';
+					bgcolor='bluebgMobile';
+					type= '<div class = "eventtypeMobile '+color+' ">ACADEMIC TALK</div>';	
+					summary= summary.split(']').pop();
+			  }
+			  else if ( summary.indexOf('[O]') !== -1 ){
+					color = 'yellowMobile';
+					bgcolor='yellowbgMobile';
+					type= '<div class = "eventtypeMobile '+color+' ">OUTREACH EVENT</div>';
+					summary= summary.split(']').pop();
+			  }
+			  else if ( summary.indexOf('[PT]') !== -1 ){
+					color = 'greenMobile';
+					bgcolor='greenbgMobile';
+					type= '<div class = "eventtypeMobile '+color+' ">PROFESSIONAL TALK</div>'	
+					summary= summary.split(']').pop();
+			  }
+		  
+		  
+					var description = item.description;
+					var location = item.location;
+					
+					s =type+'<div class="eventtitleMobile '+color+'">' + summary + '</div>';
+					s +='<div class="eventdate '+color+'">'+ formatDate(eventdate, defaults.timeFormat.trim())+' - '+formatDate(timeend, defaults.timeFormat.trim()) +'</div>';
+					if(location) {
+						s +='<div class="location '+color+'">' + location + '</div>';
+					}
+					if(description) {
+						s +='<div class="descriptionMobile '+color+'">'+ description +'</div>';
+					}
+					$($div).append('<a style ="mainlinkMobile" target="_blank" href="'+item.htmlLink+'"><div class="contentBoxMobile"><div class="circleMobile"> '+formatDate(eventdate, 'MonthOnly')+' <br> <div style="font-size: 40px">'+formatDate(eventdate, 'DayOnly')+'</div> </div> <div class="contentStuffMobile '+bgcolor+'">' + s + '</div></div></a>');
+        });
+      },
+      error: function(error) {
+        $($div).append('<p>' + defaults.errorMsg + ' | ' + error + '</p>');
+      }
+    });
+
+    function formatDate(strDate, strFormat) {
+      var fd, arrDate, am, time;
+      var calendar = {
+        months: {
+          full: ['', 'January', 'February', 'March', 'April', 'May',
+            'June', 'July', 'August', 'September', 'October',
+            'November', 'December'
+          ],
+          short: ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul',
+            'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+          ]
+        },
+        days: {
+          full: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+            'Friday', 'Saturday', 'Sunday'
+          ],
+          short: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat',
+            'Sun'
+          ]
+        }
+      };
+
+      if (strDate.length > 10) {
+        arrDate = /(\d+)\-(\d+)\-(\d+)T(\d+)\:(\d+)/.exec(strDate);
+
+        am = (arrDate[4] < 12);
+        time = am ? (parseInt(arrDate[4]) + ':' + arrDate[5] + ' AM') : (
+          arrDate[4] - 12 + ':' + arrDate[5] + ' PM');
+
+        if (time.indexOf('0') === 0) {
+          if (time.indexOf(':00') === 1) {
+            if (time.indexOf('AM') === 5) {
+              time = 'MIDNIGHT';
+            } else {
+              time = 'NOON';
+            }
+          } else {
+            time = time.replace('0:', '12:');
+          }
+        }
+
+      } else {
+        arrDate = /(\d+)\-(\d+)\-(\d+)/.exec(strDate);
+        time = 'Time not present in feed.';
+      }
+
+      var year = parseInt(arrDate[1]);
+      var month = parseInt(arrDate[2]);
+      var dayNum = parseInt(arrDate[3]);
+
+      var d = new Date(year, month - 1, dayNum);
+
+      switch (strFormat) {
+        case 'ShortTime':
+          fd = time;
+          break;
+        case 'ShortDate':
+          fd = month + '/' + dayNum + '/' + year;
+          break;
+		case 'DayOnly':
+          fd = dayNum;
+		  break
+		case 'MonthOnly':
+          fd = calendar.months.short[
+            month];
+		  break
+        case 'LongDate':
+          fd = calendar.days.full[d.getDay()] + ' ' + calendar.months.full[
+            month] + ' ' + dayNum + ', ' + year;
+          break;
+        case 'LongDate+ShortTime':
+          fd = calendar.days.full[d.getDay()] + ' ' + calendar.months.full[
+            month] + ' ' + dayNum + ', ' + year + ' ' + time;
+          break;
+		case 'TimeThenDate':
+          fd = time+', '+calendar.days.full[d.getDay()] + ' ' + calendar.months.full[
+            month] + ' ' + dayNum + ', ' + year;
+          break;
+        case 'ShortDate+ShortTime':
+          fd = month + '/' + dayNum + '/' + year + ' ' + time;
+          break;
+        case 'DayMonth':
+          fd = calendar.days.short[d.getDay()] + ', ' + calendar.months.full[
+            month] + ' ' + dayNum;
+          break;
+        case 'MonthDay':
+          fd = calendar.months.full[month] + ' ' + dayNum;
+          break;
+        case 'YearMonth':
+          fd = calendar.months.full[month] + ' ' + year;
+          break;
+        default:
+          fd = calendar.days.full[d.getDay()] + ' ' + calendar.months.short[
+            month] + ' ' + dayNum + ', ' + year + ' ' + time;
+      }
+
+      return fd;
+    }
+  };
+
+}(jQuery));
+
+
+</script>
+
+<script type="text/javascript">
+   jQuery(function ($) {
+       $('#eventlist').gCalReaderList({
+         calendarId:'seasgc.cal@gmail.com',
+         apiKey:'AIzaSyAVhU0GdCZQidylxz7whIln82rWtZ4cIDQ',
+         sortDescending: false
+        });
+	 });
+</script>
+<body>
+ <div style="padding:0px" id="eventlist">
+</div>
+</body>
+</html>

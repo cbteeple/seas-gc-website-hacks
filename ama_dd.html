@@ -1,0 +1,215 @@
+<script type="text/javascript">
+
+var sheetID = '1K9orzR75_SW13XUK_REPuF9HtJP0iO73zzgbapa0LwM/1';
+
+</script>
+
+<head>
+<style>
+  .ama_response{
+	background-color: #c6e0ff;
+    //border: 1px solid #293352;
+    padding: 15px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+	font-weight: bold;
+    margin: 2px 2px;
+	border-radius: 20px;
+	max-width: 30%
+  }
+  
+  .super_tiny{
+  font-size: 12px;
+  color: #8996A0;
+  }
+  
+ 
+  .response_color_0{
+	background-color: #c6e0ff;
+	color: #293352;
+  }
+  .response_color_1{
+	background-color: #dfffc4;
+	color: #3d6338;
+  }
+  .response_color_2{
+	background-color: #fff5ce;
+	color: #665200;
+  }
+  .response_color_3{
+	background-color: #ffe4ce;
+	color: #6d3200;
+  }
+  .response_color_4{
+	background-color: #ffe0e4;
+	color: #6b0a18;
+  }
+  .response_color_5{
+	background-color: #f5e0ff;
+	color: #410060;
+  }
+  
+  
+  @media screen and (min-width: 0px) {
+  
+	  .ama_response{
+	  max-width: 100%
+	  }
+  }
+  
+  
+  @media screen and (min-width: 1008px) {
+  
+	  .ama_response{
+	  max-width: 43%
+	  }
+  }
+  
+  
+</style>
+</head>
+
+<body>
+<div>
+<h2>Current questions from other students:</h2>
+</div>
+	
+		<div class="all_responses" id="AllResponses" class="clear">
+		
+		
+		</div>
+
+
+</body>
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" />
+
+<script type="text/javascript">
+var key='AIzaSyBjvM6POir0MwURZyekJSdMiqbfW_E1pyM';
+
+
+
+</script>
+
+
+<script type="text/javascript">
+
+var prefix  = 'https://spreadsheets.google.com/feeds/list/';
+//var sheetID = '1K9orzR75_SW13XUK_REPuF9HtJP0iO73zzgbapa0LwM/1';
+var suffix  = '/public/values?alt=json';
+
+
+const responseItem = ({response, color_idx}) => `		
+	<div class="ama_response response_color_${color_idx}">
+		${response}
+	</div>
+			
+			
+`;
+
+
+
+function getValue(sheet){
+   var value= $.ajax({ 
+      url: prefix+sheet+suffix, 
+      async: false,
+	  dataType: 'jsonp',
+	  success: function(dataWeGotViaJsonp){
+        dataOutCallback(dataWeGotViaJsonp, sheet);
+      }
+   })
+}
+
+Array.prototype.contains = function(obj) {
+    return this.indexOf(obj);
+};
+
+
+
+
+
+
+
+//Define some global variables
+var profilesParsed=null;
+
+function dataOutCallback(data,sheet){
+	if (sheet == sheetID){
+		profilesParsed = data;
+	}
+	else if(sheet == tagID){
+		tagsParsed = data;
+	}
+
+	if(profilesParsed!=null){
+		//load the page
+		loadFullPage()
+	}
+	//console.log(data)
+}
+
+
+getValue(sheetID);
+
+
+function loadFullPage(){
+	profiles=profilesParsed.feed.entry;
+
+	var OfficerContainer = document.getElementById('OfficerContainer');
+	var MemberContainer = document.getElementById('MemberContainer');
+	var AllVec=[];
+	var MemberType=[];
+	var allColors=[0,1,2,3,4,5];
+	allColors_temp=allColors.slice(0,allColors.length);
+
+
+	$.each( profiles, function( index, value ){	
+		var out={};
+		
+		out.response=value.gsx$questionsyouwanttosubmitpriortotheeventoptionalyouremailaddressisnotbeingrecordedhere.$t;
+		if (out.response!=""){
+		
+			if (allColors_temp.length<=0){
+				allColors_temp=allColors.slice(0,allColors.length);
+			}
+			index=Math.floor(Math.random() * allColors_temp.length);
+			out.color_idx=allColors_temp[index];
+			allColors_temp.splice(index, 1);
+			
+			AllVec.push(out);
+			console.log(out.response)
+			
+		}
+
+		
+	});
+
+
+	//Place buttons in the divs
+		var MembersContainer = document.getElementById('AllResponses');
+		MembersContainer.innerHTML=MembersContainer.innerHTML + AllVec.map(responseItem).join('');
+		
+		var currentdate = new Date(); 
+	var datetime = "Fetched: " + currentdate.getDate() + "/"
+	                + (currentdate.getMonth()+1)  + "/" 
+	                + currentdate.getFullYear() + " @ "  
+	                + currentdate.getHours() + ":"  
+	                + currentdate.getMinutes() + ":" 
+	                + currentdate.getSeconds();
+		
+		MembersContainer.innerHTML=MembersContainer.innerHTML + '<div class="super_tiny">'+datetime+'</div>'
+
+}
+
+
+</script>
