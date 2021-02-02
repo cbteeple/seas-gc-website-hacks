@@ -1,8 +1,15 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <head>
     <title></title>
-    <style type="text/css">
+         
+
+
+
+
+
+
+<style type="text/css">
         .li {
 			list-style:none;
 			padding:3px;
@@ -102,9 +109,9 @@
 		  height: 50px;
 		  border-radius: 50%;
 		  font-size: 13px;
-		  color: #000;
+		  color: #a5a5a5;
 		  text-align: center;
-		  background: #FFF;
+		  background:#dbdbdb;
 		  line-height: 20px;
 		  font-weight: bold;
 		  
@@ -140,12 +147,16 @@
 		.todaybox{
 			background: #fff2f3;
 			border-radius: 5px;
-			border-top-left-radius: 28px;
+		        border-top-left-radius: 28px;
+                        border-color: #ffc4c8;
+
 
 		}
 		
 		.oddbox{
 			background: #ededed;
+                        border-left-color: #ededed;
+                        border-bottom-color: #ededed;
 
 		}
 		
@@ -166,10 +177,9 @@
 			width: 100%;
 			height: 900px;
 			//position: relative;
-			display: none;			
+			//display: none;			
 		}
 		
-
 		
 		
 		
@@ -217,6 +227,14 @@
 			float: left; /* fix for  buggy browsers */       
 			width: 14.1%;
 			width: calc(100% / 7);
+                        border-left-style: solid;
+                        border-bottom-style: solid;
+                        border-bottom-width: 1px;
+                        border-left-width: 1px;
+                        border-left-color: #e5e5e5;
+                        border-bottom-color: #e5e5e5;
+                        border-bottom-left-radius: 5px;
+		        border-top-left-radius: 28px;
 					
 		}
 		
@@ -237,8 +255,33 @@
 		.eventdateLARGE {font-size: 16px;  font-weight: bold}
 		.locationLARGE {font-size: 16px; font-weight: bold}
 
+		.descriptionLARGE a{
+			text-decoration: none;
+			color: #FFFFFF !important;
+			border-bottom: rgba(255,255,255,0.5) 1px solid;
+			transition: all 0.2s;
+			}
+			
+		.descriptionLARGE a:hover{
+			background: rgba(255,255,255,0.15);
+    		border-bottom: rgba(255,255,255,1) 1px solid;
+			}
 		
-		
+.locationLARGE a, .location a, .locationLARGE a:visited, .location a:visited  {
+    border-color: rgba(255,255,255,0.4);
+    border-width: 1px;
+    border-style: solid;
+    padding: 4px 6px 4px 6px;
+    line-height: 2.0;
+    border-radius: 3px;
+    color: #FFFFFF !important;
+    transition: all 0.2s;
+}
+
+.locationLARGE a:hover, .location a:hover {
+    background: rgba(255,255,255,0.15);
+    border-color: rgba(255,255,255,0.6);
+}
 		
 		
 .whiteText{
@@ -277,6 +320,7 @@
 
 
 
+
 		
 .red{
 	color: #c60000;
@@ -290,6 +334,7 @@
 	background: #E53935;
 	//border:1px dotted #c60000;
 }
+
 
 .redbgO{
 	color: #E53935;
@@ -312,6 +357,7 @@
 
 }
 
+
 .bluebgO{
 	background: #0089b7;
 	background: #FFFFFF;
@@ -332,6 +378,7 @@
 	//border:1px dotted #db5b00;
 
 }
+
 
 .orangebgO{
 	background: #db5b00;
@@ -363,6 +410,7 @@
 
 
 
+
 .green{
 	color: #009600;
 }
@@ -379,8 +427,6 @@
 	background: #FFFFFF;
 	color: #009600;
 }
-
-
 
 
 
@@ -403,7 +449,6 @@
 	background: #FFFFFF;
 	color: #5c5f60;
 }
-
 
 
 
@@ -508,15 +553,6 @@ position: static;
 
 
 
-
-
-
-
-
-
-		
-		
-		
 		.contentBoxMobile{
 			display: flex;
 			display: -webkit-flex;
@@ -549,7 +585,7 @@ position: static;
 		}
 		
 		.contentBoxMobile:hover .contentStuffMobile {
-			opacity: 0.7;
+			opacity: 0.9;
 		}
 		
 
@@ -599,19 +635,41 @@ position: static;
 		.eventdateMobile {font-size: 14px;}
 		.eventlocationMobile {font-size: 14px;}
 		
-		.mainlinkMobile{
+		.mainlinkMobile, .mainlinkMobile:visited{
 			text-decoration: none;
-			color: #FFFFFF;
+			color: rgba(255,255,255,0.6);
+			font-size: 11px;
+			display: inline-block;
+			margin-top: 1em;
+			text-align: right;
+
+			border-color: rgba(255,255,255,0.3);
+		    border-width: 1px;
+		    border-style: solid;
+		    padding: 0px 5px 0px 5px;
+		    line-height: 2.0;
+		    border-radius: 3px;
+		    float: right;
+		    transition: all 0.2s;
+
 		}
+
+		.mainlinkMobile:hover {
+    background: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,1.0);
+}
 		
 		
 		.descriptionMobile a{
 			text-decoration: none;
-			color: #FFFFFF;
+			color: #FFFFFF !important;
+			border-bottom: rgba(255,255,255,0.5) 1px solid;
+			transition: all 0.2s;
 			}
 			
 		.descriptionMobile a:hover{
-			color: #ffe0e0;
+			background: rgba(255,255,255,0.15);
+    		border-bottom: rgba(255,255,255,1) 1px solid;
 			}
 			
 			
@@ -744,16 +802,16 @@ position: static;
 		
 		
 		
-		
     </style>
+
+
+
 	
 	
 	
 </head>
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-<script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"><script>
 // media query event handler
 if (matchMedia) {
   const mq = window.matchMedia("(min-width: 479px)");
@@ -980,18 +1038,22 @@ function WidthChange(mq) {
 			divs+='<a class="close" href="#/">&times;</a>';
 			
 			if(location) {
-				divs +='<div class="locationLARGE whiteText">' + location + '</div>';
+				if(validURLSimple(location)){
+					divs +='<div class="locationLARGE whiteText"> Online: ' +  '<a href="'+location+'">Event Link</a>' + '</div>';
+				}
+				else{
+					divs +='<div class="locationLARGE whiteText">' + location + '</div>';
+				}
 			}
 			
 			
 			if(description) {
 				divs +='<div class="descriptionLARGE whiteText">'+ description +'</div>';
-				console.log(description);
 			}			
 			
-			divs+='<div><a class="Link" target="_blank" href="'+item.htmlLink+'"><br>Open Event in Google Calendar</a><\div>'
-			divs+='</div></div></div>';
-			divs+='</div></div></div>';
+			divs+='</div></div>'
+			divs+='<div><a class ="mainlinkMobile" target="_blank" href="'+item.htmlLink+'">Add to Google Calendar</a></div>';
+			divs+='</div></div></div></div>';
 		
 		divsVec+=divs;
 		
@@ -1227,12 +1289,11 @@ Date.prototype.toISOString = function() {
         }
         data.items = data.items.slice(0, defaults.maxEvents);
 
-		
         $.each(data.items, function(e, item) {		
           var eventdate = item.start.dateTime || item.start.date ||'';
           var summary = item.summary || '';
 		  
-		  var timeend = item.end.dateTime;
+		  var timeend = item.end.dateTime || item.end.date ||'';
 		  
 		  
 			  //Set Color Based on what type of event this is
@@ -1275,22 +1336,32 @@ Date.prototype.toISOString = function() {
 					var location = item.location;
 					
 					s =type+'<div class="eventtitleMobile '+color+'">' + summary + '</div>';
-					s +='<div class="eventdateMobile '+color+'">'+ formatDate(eventdate, defaults.timeFormat.trim())+' - '+formatDate(timeend, defaults.timeFormat.trim()) +'</div>';
+					
+					start_time = formatDate(eventdate, defaults.timeFormat.trim());
+					end_time   = formatDate(timeend, defaults.timeFormat.trim());
+					if (start_time != null & end_time != null){
+						time_text = start_time+' - '+end_time;
+					}
+					else{
+						time_text = "All Day";
+					}
+					s +='<div class="eventdate '+color+'">'+ time_text +'</div>';
 					if(location) {
-						s +='<div class="locationMobile '+color+'">' + location + '</div>';
+						if(validURLSimple(location)){
+							s +='<div class="location '+color+'">Online: ' + '<a href="'+location+'">Event Link</a>' + '</div>';
+						}
+						else {
+							s +='<div class="location '+color+'">' + location + '</div>';
+						}
 					}
 					if(description) {
-						s +='<div class="descriptionMobile '+color+'" style="color: #FFFFFF;"> <br>'+ description +'</div>';
+						s +='<div class="descriptionMobile '+color+'">'+ description +'</div>';
 					}
-					
-					console.log('Spitting Description:');
-					console.log(s);
-					console.log(item.htmlLink);
-					
-					
-					$($div).append('<a class ="mainlinkMobile '+color+'" target="_blank" href="'+item.htmlLink+'"><div class="contentBoxMobile"><div class="circleMobile"> '+formatDate(eventdate, 'MonthOnly')+' <br> <div style="font-size: 40px">'+formatDate(eventdate, 'DayOnly')+'</div> </div> <div class="contentStuffMobile '+bgcolor+'">' + s + '</div></div></a>');
 
-					});
+					s+='<div><a class ="mainlinkMobile" target="_blank" href="'+item.htmlLink+'">Add to Google Calendar</a></div>'
+
+					$($div).append('<div class="contentBoxMobile"><div class="circleMobile"> '+formatDate(eventdate, 'MonthOnly')+' <br> <div style="font-size: 40px">'+formatDate(eventdate, 'DayOnly')+'</div> </div> <div class="contentStuffMobile '+bgcolor+'">' + s + '</div></div>');
+        });
       },
       error: function(error) {
         $($div).append('<p>' + defaults.errorMsg + ' | ' + error + '</p>');
@@ -1321,6 +1392,7 @@ Date.prototype.toISOString = function() {
         }
       };
 
+
       if (strDate.length > 10) {
         arrDate = /(\d+)\-(\d+)\-(\d+)T(\d+)\:(\d+)/.exec(strDate);
 
@@ -1342,7 +1414,7 @@ Date.prototype.toISOString = function() {
 
       } else {
         arrDate = /(\d+)\-(\d+)\-(\d+)/.exec(strDate);
-        time = 'Time not present in feed.';
+        time = null;
       }
 
       var year = parseInt(arrDate[1]);
@@ -1440,24 +1512,30 @@ Date.prototype.toISOString = function() {
 
 </script>
 
-
-
-
-
-
-
-
-
 <script type="text/javascript">
- /*  jQuery(function ($) {
-       $('#CalendarBlock').gCalReader({
-         calendarId:'seasgc.cal@gmail.com',
-         apiKey:'AIzaSyAVhU0GdCZQidylxz7whIln82rWtZ4cIDQ',
-         sortDescending: false
-        });
-	 });
-	 */
+	function validURL(str) {
+	  var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+	    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+	    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+	    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+	    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+	    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+	  return !!pattern.test(str);
+	}
+	function validURLSimple(str) {
+	  var pattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/; 
+        if (pattern.test(str)) { 
+            return true; 
+        }  
+            return false; 
+ 
+    } 
 </script>
+
+
+
+
+
 
 
 <script type="text/javascript">
@@ -1471,14 +1549,17 @@ Date.prototype.toISOString = function() {
 </script>
 
 
+
+
+
 <body>
 
- <div class="largeContainer" style="padding:0px" id="CalendarBlock"></div>
+
 <div>
-<a class="Link" style="font-size: 14px" target="_blank" href="https://calendar.google.com/calendar/embed?src=seasgc.cal%40gmail.com&ctz=America/New_York"> SEAS-GC Public Calendar</a>
+<a class="Link" style="font-size: 14px; color: #A51C30 !important" target="_blank" href="https://calendar.google.com/calendar/embed?src=seasgc.cal%40gmail.com&ctz=America/New_York"> SEAS-GC Public Calendar</a>
 </div>
 
- <div class="mobileContainer" style="padding:0px" id="eventlist"></div>
-
+ <div class="mobileContainer" style="padding:0px" id="eventlist">
+</div>
 </body>
 </html>

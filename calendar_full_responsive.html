@@ -86,7 +86,7 @@
 		  font-size: 13px;
 		  color: #000;
 		  text-align: center;
-		  background: #ededed;
+		  /*background: #ededed;*/
 		  line-height: 20px;
 		  font-weight: bold;
 		}
@@ -111,7 +111,7 @@
 		  font-size: 13px;
 		  color: #a5a5a5;
 		  text-align: center;
-		  background:#dbdbdb;
+		  /*background:#dbdbdb;*/
 		  line-height: 20px;
 		  font-weight: bold;
 		  
@@ -145,7 +145,7 @@
 		
 
 		.todaybox{
-			background: #fff2f3;
+			/*background: #fff2f3;*/
 			border-radius: 5px;
 		        border-top-left-radius: 28px;
                         border-color: #ffc4c8;
@@ -233,7 +233,8 @@
                         border-left-width: 1px;
                         border-left-color: #e5e5e5;
                         border-bottom-color: #e5e5e5;
-                        border-bottom-left-radius: 5px;
+                        border-bottom-left-radius: 7px;
+                        border-bottom-right-radius: 7px;
 		        border-top-left-radius: 28px;
 					
 		}
@@ -257,13 +258,31 @@
 
 		.descriptionLARGE a{
 			text-decoration: none;
-			color: #FFFFFF;
+			color: #FFFFFF !important;
+			border-bottom: rgba(255,255,255,0.5) 1px solid;
+			transition: all 0.2s;
 			}
 			
 		.descriptionLARGE a:hover{
-			color: #ffe0e0;
+			background: rgba(255,255,255,0.15);
+    		border-bottom: rgba(255,255,255,1) 1px solid;
 			}
 		
+.locationLARGE a, .location a, .locationLARGE a:visited, .location a:visited  {
+    border-color: rgba(255,255,255,0.4);
+    border-width: 1px;
+    border-style: solid;
+    padding: 4px 6px 4px 6px;
+    line-height: 2.0;
+    border-radius: 3px;
+    color: #FFFFFF !important;
+    transition: all 0.2s;
+}
+
+.locationLARGE a:hover, .location a:hover {
+    background: rgba(255,255,255,0.15);
+    border-color: rgba(255,255,255,0.6);
+}
 		
 		
 .whiteText{
@@ -317,6 +336,7 @@
 	//border:1px dotted #c60000;
 }
 
+
 .redbgO{
 	color: #E53935;
 	background: #c60000;
@@ -338,6 +358,7 @@
 
 }
 
+
 .bluebgO{
 	background: #0089b7;
 	background: #FFFFFF;
@@ -358,6 +379,7 @@
 	//border:1px dotted #db5b00;
 
 }
+
 
 .orangebgO{
 	background: #db5b00;
@@ -389,6 +411,7 @@
 
 
 
+
 .green{
 	color: #009600;
 }
@@ -405,8 +428,6 @@
 	background: #FFFFFF;
 	color: #009600;
 }
-
-
 
 
 
@@ -429,7 +450,6 @@
 	background: #FFFFFF;
 	color: #5c5f60;
 }
-
 
 
 
@@ -566,7 +586,7 @@ position: static;
 		}
 		
 		.contentBoxMobile:hover .contentStuffMobile {
-			opacity: 0.7;
+			opacity: 0.9;
 		}
 		
 
@@ -616,19 +636,41 @@ position: static;
 		.eventdateMobile {font-size: 14px;}
 		.eventlocationMobile {font-size: 14px;}
 		
-		.mainlinkMobile{
+		.mainlinkMobile, .mainlinkMobile:visited{
 			text-decoration: none;
-			color: #FFFFFF;
+			color: rgba(255,255,255,0.6);
+			font-size: 11px;
+			display: inline-block;
+			margin-top: 1em;
+			text-align: right;
+
+			border-color: rgba(255,255,255,0.3);
+		    border-width: 1px;
+		    border-style: solid;
+		    padding: 0px 5px 0px 5px;
+		    line-height: 2.0;
+		    border-radius: 3px;
+		    float: right;
+		    transition: all 0.2s;
+
 		}
+
+		.mainlinkMobile:hover {
+    background: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,1.0);
+}
 		
 		
 		.descriptionMobile a{
 			text-decoration: none;
-			color: #FFFFFF;
+			color: #FFFFFF !important;
+			border-bottom: rgba(255,255,255,0.5) 1px solid;
+			transition: all 0.2s;
 			}
 			
 		.descriptionMobile a:hover{
-			color: #ffe0e0;
+			background: rgba(255,255,255,0.15);
+    		border-bottom: rgba(255,255,255,1) 1px solid;
 			}
 			
 			
@@ -828,7 +870,7 @@ function WidthChange(mq) {
 
 		//d= new Date(getSunday(d));
 		var ed = new Date();
-		ed.setTime(d.getTime()+AddDaysInMS(27));
+		ed.setTime(d.getTime()+AddDaysInMS(35));
 
 
 	  
@@ -871,7 +913,7 @@ function WidthChange(mq) {
 		var DateDay=new Date(d);
 		DateDay.setDate(DateDay.getDate());
 		var today = new Date();
-		for (var k=0; k<4; k++ ){
+		for (var k=0; k<5; k++ ){
 			tableout+='<div class="div-table-row">';
 			for (var j=0; j<7;j++ ){
                 var todayclass='class="div-table-col"';
@@ -894,10 +936,17 @@ function WidthChange(mq) {
 		
 		//for each day in the calendar, check if the 
         $.each(data.items, function(e, item) {	
-		  var timeend = item.end.dateTime;
-		  var startdate=item.start.dateTime;		
-		  var actualdate = new Date(startdate);
+		  var timeend = item.end.dateTime || item.end.date ||'';
+		  var startdate= item.start.dateTime || item.start.date ||'';
+
+		  start_date_str=formatDate(startdate, 'ShortDate')
+		  var actualdate = new Date(start_date_str+" 00:00");
 		  var weekday = actualdate.getDay();
+
+		  console.log(" ")
+		  console.log(item.summary)
+		  console.log(startdate)
+		  console.log(actualdate)
 		
 		  //If the date and day of the week matches, inject the event into the table
 						
@@ -966,7 +1015,19 @@ function WidthChange(mq) {
 					var location = item.location;
 					
 					s =type+'<div class="eventtitle whiteText">' + summary + '</div>';
-					s +='<div class="eventdate whiteText">'+ formatDate(eventdate, defaults.timeFormat.trim())+' - '+formatDate(timeend, defaults.timeFormat.trim()) +'</div>';
+
+					start_time = formatDate(eventdate, defaults.timeFormat.trim());
+					end_time   = formatDate(timeend, defaults.timeFormat.trim());
+
+					if (start_time != null & end_time != null){
+						time_text = start_time+' - '+end_time;
+					}
+					else{
+						time_text = "All Day";
+					}
+
+					
+					s +='<div class="eventdate whiteText">'+ time_text +'</div>';
 					
 									
 		
@@ -993,11 +1054,16 @@ function WidthChange(mq) {
 			divs+=formatDate(DateDay.toISOString(), 'MonthOnly')+' <br> <div style="font-size: 40px">'+formatDate(DateDay.toISOString(), 'DayOnly')+ '</div></div></div><div>'
 			divs+=typeLARGE;
 			divs+='<div class="eventtitleLARGE whiteText">' + summary + '</div>';
-			divs +='<div class="eventdateLARGE whiteText">'+ formatDate(eventdate, defaults.timeFormat.trim())+' - '+formatDate(timeend, defaults.timeFormat.trim()) +'</div>';
+			divs +='<div class="eventdateLARGE whiteText">'+ time_text +'</div>';
 			divs+='<a class="close" href="#/">&times;</a>';
 			
 			if(location) {
-				divs +='<div class="locationLARGE whiteText">' + location + '</div>';
+				if(validURLSimple(location)){
+					divs +='<div class="locationLARGE whiteText"> Online: ' +  '<a href="'+location+'">Event Link</a>' + '</div>';
+				}
+				else{
+					divs +='<div class="locationLARGE whiteText">' + location + '</div>';
+				}
 			}
 			
 			
@@ -1005,9 +1071,9 @@ function WidthChange(mq) {
 				divs +='<div class="descriptionLARGE whiteText">'+ description +'</div>';
 			}			
 			
-			divs+='<div><a class="Link" target="_blank" href="'+item.htmlLink+'"><br>Open Event in Google Calendar</a><\div>'
-			divs+='</div></div></div>';
-			divs+='</div></div></div>';
+			divs+='</div></div>'
+			divs+='<div><a class ="mainlinkMobile" target="_blank" href="'+item.htmlLink+'">Add to Google Calendar</a></div>';
+			divs+='</div></div></div></div>';
 		
 		divsVec+=divs;
 		
@@ -1106,7 +1172,7 @@ function WidthChange(mq) {
 
       } else {
         arrDate = /(\d+)\-(\d+)\-(\d+)/.exec(strDate);
-        time = 'Time not present in feed.';
+        time = null;
       }
 
       var year = parseInt(arrDate[1]);
@@ -1247,7 +1313,7 @@ Date.prototype.toISOString = function() {
           var eventdate = item.start.dateTime || item.start.date ||'';
           var summary = item.summary || '';
 		  
-		  var timeend = item.end.dateTime;
+		  var timeend = item.end.dateTime || item.end.date ||'';
 		  
 		  
 			  //Set Color Based on what type of event this is
@@ -1290,14 +1356,32 @@ Date.prototype.toISOString = function() {
 					var location = item.location;
 					
 					s =type+'<div class="eventtitleMobile '+color+'">' + summary + '</div>';
-					s +='<div class="eventdate '+color+'">'+ formatDate(eventdate, defaults.timeFormat.trim())+' - '+formatDate(timeend, defaults.timeFormat.trim()) +'</div>';
+					
+					start_time = formatDate(eventdate, defaults.timeFormat.trim());
+					end_time   = formatDate(timeend, defaults.timeFormat.trim());
+					if (start_time != null & end_time != null){
+						time_text = start_time+' - '+end_time;
+					}
+					else{
+						time_text = "All Day";
+					}
+					s +='<div class="eventdate '+color+'">'+ time_text +'</div>';
+
 					if(location) {
-						s +='<div class="location '+color+'">' + location + '</div>';
+						if(validURLSimple(location)){
+							s +='<div class="location '+color+'">Online: ' + '<a href="'+location+'">Event Link</a>' + '</div>';
+						}
+						else {
+							s +='<div class="location '+color+'">' + location + '</div>';
+						}
 					}
 					if(description) {
 						s +='<div class="descriptionMobile '+color+'">'+ description +'</div>';
 					}
-					$($div).append('<a class ="mainlinkMobile" target="_blank" href="'+item.htmlLink+'"><div class="contentBoxMobile"><div class="circleMobile"> '+formatDate(eventdate, 'MonthOnly')+' <br> <div style="font-size: 40px">'+formatDate(eventdate, 'DayOnly')+'</div> </div> <div class="contentStuffMobile '+bgcolor+'">' + s + '</div></div></a>');
+
+					s+='<div><a class ="mainlinkMobile" target="_blank" href="'+item.htmlLink+'">Add to Google Calendar</a></div>'
+
+					$($div).append('<div class="contentBoxMobile"><div class="circleMobile"> '+formatDate(eventdate, 'MonthOnly')+' <br> <div style="font-size: 40px">'+formatDate(eventdate, 'DayOnly')+'</div> </div> <div class="contentStuffMobile '+bgcolor+'">' + s + '</div></div>');
         });
       },
       error: function(error) {
@@ -1350,7 +1434,7 @@ Date.prototype.toISOString = function() {
 
       } else {
         arrDate = /(\d+)\-(\d+)\-(\d+)/.exec(strDate);
-        time = 'Time not present in feed.';
+        time = null;
       }
 
       var year = parseInt(arrDate[1]);
@@ -1448,7 +1532,25 @@ Date.prototype.toISOString = function() {
 
 </script>
 
-
+<script type="text/javascript">
+	function validURL(str) {
+	  var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+	    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+	    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+	    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+	    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+	    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+	  return !!pattern.test(str);
+	}
+	function validURLSimple(str) {
+	  var pattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/; 
+        if (pattern.test(str)) { 
+            return true; 
+        }  
+            return false; 
+ 
+    } 
+</script>
 
 
 
